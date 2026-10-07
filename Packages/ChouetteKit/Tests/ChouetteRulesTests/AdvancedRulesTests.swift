@@ -47,6 +47,20 @@ struct SirotageTests {
         #expect(game.scores == [-16, 0, 25])
     }
 
+    @Test("Variante allégée : un sirotage raté ne coûte rien")
+    func lightFailure() throws {
+        var game = try makeGame(rules: rules {
+            $0.sirotage.isEnabled = true
+            $0.sirotage.failure = .scoreNothing
+        })
+        try game.roll(4, 1, 4)
+        try game.apply(.decideSirotage(true))
+        try game.apply(.placeSirotageBets([2: 3]))
+        try game.apply(.sirotageRoll(DieFace(3)!))
+        #expect(game.scores == [0, 0, 25])
+        #expect(game.currentPlayer == 1)
+    }
+
     @Test("Sans paris, on passe directement à la relance")
     func noBets() throws {
         var game = try makeGame(rules: rules {
@@ -180,7 +194,7 @@ struct GrelottineTests {
         var game = try setUp()
         #expect(game.canLaunchGrelottine)
         #expect(game.grelottineTargets == [1])
-        #expect(game.grelottineMaxStake(against: 1) == 26)
+        #expect(game.grelottineMaxStake(against: 1) == 50, "Règle traditionnelle : seul le plafond compte")
         try game.apply(.launchGrelottine(target: 1, figure: .chouette, stake: 20))
         #expect(!game.players[0].hasGrelottine)
         let events = try game.apply(.grelottineRoll(Roll(2, 5, 2)))
@@ -207,17 +221,37 @@ struct GrelottineTests {
             try game.apply(.launchGrelottine(target: 0, figure: .chouette, stake: 5))
         }
         #expect(throws: GameError.invalidStake) {
-            try game.apply(.launchGrelottine(target: 1, figure: .chouette, stake: 27))
+            try game.apply(.launchGrelottine(target: 1, figure: .chouette, stake: 51))
         }
         #expect(game.players[0].hasGrelottine)
     }
 
-    @Test("Impossible de défier un joueur à 0 point")
-    func noTargetWithoutPoints() throws {
+    @Test("Règle traditionnelle : un joueur à 0 point peut être défié et passer en négatif")
+    func zeroScoreTarget() throws {
         var game = try makeGame(players: 2, rules: grelottine)
         try game.roll(1, 3, 6)
         try game.roll(1, 3, 6)
-        #expect(!game.canLaunchGrelottine)
+        #expect(game.grelottineTargets == [1])
+        try game.apply(.launchGrelottine(target: 1, figure: .culDeChouette, stake: 50))
+        try game.apply(.grelottineRoll(Roll(1, 3, 6)))
+        #expect(game.scores == [50, -50])
+    }
+
+    @Test("Variante allégée : mise limitée aux scores des deux joueurs")
+    func lightStakeLimit() throws {
+        var light = grelottine
+        light.grelottine.stakeLimitedByScores = true
+        var game = try makeGame(players: 2, rules: light)
+        try game.roll(1, 3, 6)   // J0 néant → grelottine
+        try game.roll(1, 3, 6)
+        #expect(!game.canLaunchGrelottine, "Personne n'a de points")
+        try game.roll(5, 5, 1)   // J0 25 (garde sa grelottine)
+        try game.roll(2, 2, 1)   // J1 4
+        #expect(game.grelottineMaxStake(against: 1) == 4)
+        #expect(throws: GameError.invalidStake) {
+            try game.apply(.launchGrelottine(target: 1, figure: .chouette, stake: 5))
+        }
+        try game.apply(.launchGrelottine(target: 1, figure: .chouette, stake: 4))
     }
 
     @Test("Une grelottine peut terminer la partie")
@@ -241,7 +275,11 @@ struct GrelottineTests {
 struct SimulationTests {
 
     /// Joue une partie entière avec des décisions aléatoires et vérifie les invariants.
-    @Test("Invariants sur 200 parties", arguments: [RuleSet.standard, RuleSet.allAdvanced])
+    @Test("Invariants sur 200 parties", arguments: [RuleSet.standard, RuleSet.allAdvanced, {
+        var rules = RuleSet.allAdvanced
+        rules.applyLightVariants()
+        return rules
+    }()])
     func randomGames(rules: RuleSet) throws {
         for seed in UInt64(0)..<200 {
             var rng = SeededGenerator(seed: seed)

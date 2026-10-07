@@ -3,6 +3,10 @@
 Ce document décrit exactement ce que fait le moteur (`Packages/ChouetteKit`).
 Chaque valeur marquée ⚙︎ est réglable dans `RuleSet`. Les tests vérifient chaque règle.
 
+**Par défaut, la règle traditionnelle s'applique.** Trois points peuvent être adoucis
+dans les réglages (marqués 🪶 ci-dessous), un par un ou tous ensemble avec le
+préréglage « Règles allégées » (`RuleSet.light` / `applyLightVariants()`).
+
 ## Déroulement
 
 - 2 à 8 joueurs jouent chacun leur tour et lancent 3 dés.
@@ -24,7 +28,8 @@ Chaque valeur marquée ⚙︎ est réglable dans `RuleSet`. Les tests vérifient
 
 - **1-2-3** est à la fois une velute et une suite. Par défaut ⚙︎, le lanceur marque la velute (18), puis on joue la suite.
 - **Mini-jeux de réflexe** : tous les joueurs y participent, lanceur compris.
-  - « Grelotte ça picote ! » : si certains n'ont pas tapé avant la fin du temps imparti, **ils perdent tous**. Si tout le monde a tapé, seul le dernier perd.
+  - « Grelotte ça picote ! » : le dernier à crier perd. Si certains n'ont pas tapé avant la fin du temps imparti, ils sont tous à égalité au dernier rang et **perdent tous**. Si tout le monde a tapé, seul le dernier perd.
+    - 🪶 Allégée (`suiteLosers = .lastTapperOnly`) : seuls ceux qui ont tapé comptent, et le plus lent d'entre eux perd. Si personne n'a tapé, personne ne perd.
   - « Pas mou le caillou ! » : si personne ne tape, personne ne marque.
 - Sur 216 lancers possibles : 6 culs de chouette, 81 chouettes, 9 chouettes-velutes, 36 velutes, 24 suites (dont les 6 « 1-2-3 ») et 66 néants.
 
@@ -35,6 +40,7 @@ Chaque valeur marquée ⚙︎ est réglable dans `RuleSet`. Les tests vérifient
 - Il n'y a pas de sirotage sur une chouette-velute ni sur un cul de chouette.
 - **S'il réussit** (le dé donne la valeur de la paire), il marque les points du **cul de chouette**.
 - **S'il échoue**, il **perd** les points de sa chouette. On ne regarde pas les autres figures que pourrait former le dé relancé.
+  - 🪶 Allégée (`sirotage.failure = .scoreNothing`) : il ne marque rien, sans perte.
 - **Paris ⚙︎** : avant la relance, chaque autre joueur peut parier sur une valeur de 1 à 6. Un pari juste rapporte **25 points ⚙︎**, que le sirotage réussisse ou non.
 
 ### Bévue
@@ -50,12 +56,13 @@ Chaque valeur marquée ⚙︎ est réglable dans `RuleSet`. Les tests vérifient
 ### Grelottine
 - Un **néant** donne une grelottine au lanceur. On ne peut en détenir qu'une à la fois.
 - Au début de son tour, avant de lancer, le détenteur peut défier un autre joueur : il choisit une figure et une mise.
-- La mise va de 1 au plus petit de trois nombres : **50 ⚙︎**, son propre score et celui de l'adversaire.
+- La mise va de 1 à **50 ⚙︎**, quels que soient les scores : on peut défier un joueur à 0 point, et les scores peuvent devenir négatifs.
+  - 🪶 Allégée (`grelottine.stakeLimitedByScores = true`) : la mise ne dépasse ni le score du défieur ni celui de l'adversaire, donc un joueur à 0 point ne peut pas être défié.
 - Le joueur défié lance les dés :
   - s'il obtient la figure, il prend la mise au défieur ;
   - sinon, c'est le défieur qui prend la mise.
 - Le défieur joue ensuite son tour normalement.
 
-## Choix à confirmer ou à modifier
+## Réglages
 
-Les règles avancées n'ont pas de version officielle unique. Les choix ci-dessus sont des propositions. Toutes les valeurs ⚙︎ pourront être modifiées dans l'écran des réglages en phase 2.
+Les règles avancées n'ont pas de texte officiel unique. Les versions par défaut sont les plus strictes, celles que la communauté pratique le plus. Toutes les valeurs ⚙︎ et les variantes 🪶 seront exposées dans l'écran des réglages en phase 2.

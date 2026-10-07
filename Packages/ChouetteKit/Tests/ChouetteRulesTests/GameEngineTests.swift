@@ -103,6 +103,40 @@ struct GameEngineTests {
         #expect(game.scores == [-10, -10, -10, 0])
     }
 
+    @Test("Suite, variante allégée : seul le plus lent des joueurs ayant tapé perd")
+    func suiteLightLastTapperOnly() throws {
+        var rules = RuleSet()
+        rules.suiteLosers = .lastTapperOnly
+        var game = try makeGame(players: 4, rules: rules)
+        try game.roll(4, 5, 6)
+        try game.apply(.resolveReflex(ReflexOutcome(tapOrder: [3, 1])))
+        #expect(game.scores == [0, -10, 0, 0])
+        try game.roll(2, 3, 4)
+        try game.apply(.resolveReflex(ReflexOutcome(tapOrder: [])))
+        #expect(game.scores == [0, -10, 0, 0], "Personne n'a tapé : personne ne perd")
+    }
+
+    @Test("Les règles traditionnelles sont les règles par défaut ; le préréglage allégé change les trois choix")
+    func lightPreset() {
+        let standard = RuleSet.standard
+        #expect(standard.sirotage.failure == .loseChouette)
+        #expect(standard.suiteLosers == .allLate)
+        #expect(!standard.grelottine.stakeLimitedByScores)
+        #expect(!standard.usesLightVariants)
+
+        let light = RuleSet.light
+        #expect(light.usesLightVariants)
+        #expect(light.sirotage.failure == .scoreNothing)
+        #expect(light.suiteLosers == .lastTapperOnly)
+        #expect(light.grelottine.stakeLimitedByScores)
+        // Seuls ces trois choix diffèrent.
+        var reverted = light
+        reverted.sirotage.failure = .loseChouette
+        reverted.suiteLosers = .allLate
+        reverted.grelottine.stakeLimitedByScores = false
+        #expect(reverted == standard)
+    }
+
     @Test("1-2-3 : velute pour le lanceur, puis suite (réglage par défaut)")
     func oneTwoThreeBoth() throws {
         var game = try makeGame()

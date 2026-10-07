@@ -61,10 +61,11 @@ public struct GameEngine: Hashable, Sendable, Codable {
         players.map(\.id).filter { $0 != currentPlayer && grelottineMaxStake(against: $0) >= 1 }
     }
 
-    /// Mise maximale d'une grelottine : plafond des règles, et pas plus que ce que
-    /// chacun des deux joueurs possède.
+    /// Mise maximale d'une grelottine : le plafond des règles, et en variante allégée
+    /// pas plus que ce que chacun des deux joueurs possède.
     public func grelottineMaxStake(against target: PlayerID) -> Int {
         guard players.indices.contains(target) else { return 0 }
+        guard rules.grelottine.stakeLimitedByScores else { return rules.grelottine.maxStake }
         return min(rules.grelottine.maxStake, players[currentPlayer].score, players[target].score)
     }
 
@@ -148,7 +149,7 @@ public struct GameEngine: Hashable, Sendable, Codable {
             if success {
                 changeScore(currentPlayer, by: RollAnalyzer.culDeChouettePoints(pair, rules: rules),
                             reason: .sirotageSuccess(pairValue: pair), events: &events)
-            } else {
+            } else if rules.sirotage.failure == .loseChouette {
                 changeScore(currentPlayer, by: -RollAnalyzer.chouettePoints(pair, rules: rules),
                             reason: .sirotageFailure(pairValue: pair), events: &events)
             }
@@ -232,12 +233,17 @@ public struct GameEngine: Hashable, Sendable, Codable {
                 }
             }
         case .grelotteCaPicote:
-            // Ceux qui n'ont pas tapé perdent tous ; si tout le monde a tapé, le dernier perd.
-            let silent = challenge.participants.filter { !outcome.tapOrder.contains($0) }
-            if !silent.isEmpty {
-                losers = silent
-            } else if let last = outcome.tapOrder.last {
-                losers = [last]
+            switch rules.suiteLosers {
+            case .allLate:
+                // Ceux qui n'ont pas tapé perdent tous ; si tout le monde a tapé, le dernier perd.
+                let silent = challenge.participants.filter { !outcome.tapOrder.contains($0) }
+                if !silent.isEmpty {
+                    losers = silent
+                } else if let last = outcome.tapOrder.last {
+                    losers = [last]
+                }
+            case .lastTapperOnly:
+                losers = outcome.tapOrder.last.map { [$0] } ?? []
             }
             for loser in losers {
                 changeScore(loser, by: -challenge.points, reason: .suitePenalty, events: &events)
