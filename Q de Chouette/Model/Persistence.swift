@@ -15,6 +15,8 @@ enum GameMode: String, Codable, CaseIterable, Identifiable {
     case table3D
     /// Vrais dés, valeurs saisies à la main.
     case manual
+    /// Vrais dés, lus par l'appareil photo (avec correction possible).
+    case camera
 
     var id: String { rawValue }
 
@@ -23,6 +25,7 @@ enum GameMode: String, Codable, CaseIterable, Identifiable {
         case .simple: "Dés virtuels"
         case .table3D: "Table 3D"
         case .manual: "Mes propres dés"
+        case .camera: "Mes dés, lus à la caméra"
         }
     }
 
@@ -31,6 +34,7 @@ enum GameMode: String, Codable, CaseIterable, Identifiable {
         case .simple: "L'app lance les dés pour vous."
         case .table3D: "Secouez le téléphone ou lancez d'un geste sur une table de taverne."
         case .manual: "Lancez vos dés et saisissez les valeurs."
+        case .camera: "Lancez vos dés, l'appareil photo lit les valeurs."
         }
     }
 
@@ -39,6 +43,7 @@ enum GameMode: String, Codable, CaseIterable, Identifiable {
         case .simple: "dice"
         case .table3D: "cube"
         case .manual: "hand.point.up.left"
+        case .camera: "camera.viewfinder"
         }
     }
 }

@@ -27,6 +27,7 @@ final class GameViewModel {
         case grelottine
         case sirotageBets
         case manualEntry(RollPurpose)
+        case cameraEntry(RollPurpose)
         case scoreboard
         case rules
         var id: Self { self }
@@ -158,6 +159,8 @@ final class GameViewModel {
         switch mode {
         case .manual:
             activeSheet = .manualEntry(purpose)
+        case .camera:
+            activeSheet = .cameraEntry(purpose)
         case .table3D:
             throwRequest &+= 1
         case .simple:

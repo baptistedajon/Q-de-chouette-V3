@@ -157,6 +157,10 @@ struct GameView: View {
             ManualDiceEntry(count: purpose.diceCount, title: manualTitle(purpose)) { faces in
                 model.submitManual(faces, purpose: purpose)
             }
+        case .cameraEntry(let purpose):
+            CameraDiceSheet(count: purpose.diceCount, title: manualTitle(purpose)) { faces in
+                model.submitManual(faces, purpose: purpose)
+            }
         case .scoreboard:
             ScoreboardView(engine: model.engine, avatars: model.avatars)
         case .rules:
@@ -286,9 +290,11 @@ struct TurnHeader: View {
         let engine = model.engine
         switch engine.phase {
         case .awaitingRoll:
-            return model.mode == .manual
-                ? String(localized: "Lancez vos trois dés puis saisissez les valeurs.")
-                : String(localized: "Lancez les trois dés.")
+            switch model.mode {
+            case .manual: return String(localized: "Lancez vos trois dés puis saisissez les valeurs.")
+            case .camera: return String(localized: "Lancez vos trois dés puis filmez-les.")
+            case .simple, .table3D: return String(localized: "Lancez les trois dés.")
+            }
         case .awaitingGrelottineRoll(let c):
             return String(localized: "\(model.name(of: c.target)) relève le défi de \(model.name(of: c.challenger)) : il lui faut « \(c.figure.name) ».")
         case .awaitingSirotageDecision(let pair):
@@ -397,7 +403,7 @@ struct ActionPanel: View {
         let engine = model.engine
         switch engine.phase {
         case .awaitingRoll:
-            rollButton(title: model.mode == .manual ? String(localized: "Saisir mes dés") : String(localized: "Lancer les dés"))
+            rollButton(title: model.mode == .manual ? String(localized: "Saisir mes dés") : model.mode == .camera ? String(localized: "Lire mes dés") : String(localized: "Lancer les dés"))
             if engine.canDeclareCivet || engine.canLaunchGrelottine {
                 HStack(spacing: 10) {
                     if engine.canDeclareCivet {
@@ -431,7 +437,7 @@ struct ActionPanel: View {
             }
             .buttonStyle(.primary)
         case .awaitingSirotageRoll:
-            rollButton(title: model.mode == .manual ? String(localized: "Saisir le dé relancé") : String(localized: "Relancer le dé"))
+            rollButton(title: model.mode == .manual ? String(localized: "Saisir le dé relancé") : model.mode == .camera ? String(localized: "Lire le dé relancé") : String(localized: "Relancer le dé"))
         case .awaitingReflex:
             if model.reflexBriefing != nil {
                 Button { model.startBriefedReflex() } label: {
