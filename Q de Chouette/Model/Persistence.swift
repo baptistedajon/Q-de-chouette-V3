@@ -4,6 +4,7 @@
 // sont des résumés pour les listes, sans avoir à décoder le moteur.
 
 import Foundation
+import OSLog
 import SwiftData
 import ChouetteRules
 
@@ -127,7 +128,8 @@ enum Persistence {
         } catch {
             // Base illisible (ex. schéma incompatible en développement) : on repart d'une base
             // en mémoire plutôt que de planter. L'erreur est journalisée pour le débogage.
-            print("⚠︎ Impossible d'ouvrir la base SwiftData : \(error)")
+            Logger(subsystem: "com.baptistedajon.Qdechouette", category: "persistence")
+                .error("Impossible d'ouvrir la base SwiftData : \(error.localizedDescription)")
             return try! ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
         }
     }

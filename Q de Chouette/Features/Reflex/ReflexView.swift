@@ -82,6 +82,7 @@ struct ReflexView: View {
         session.signal(at: ProcessInfo.processInfo.systemUptime)
         stage = .signal
         signalTick += 1
+        SoundEngine.shared.play(.signal)
         if UIAccessibility.isVoiceOverRunning {
             AccessibilityNotification.Announcement(challenge.kind.phrase).post()
         }

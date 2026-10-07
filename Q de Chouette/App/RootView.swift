@@ -47,5 +47,6 @@ struct RootView: View {
                 }
         }
         .tint(Theme.accent)
+        .task { await SoundEngine.shared.prepare() }
     }
 }

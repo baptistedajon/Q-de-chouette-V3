@@ -46,7 +46,10 @@ struct GameView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            // Barres fixes : agrandissement plafonné pour laisser la place au jeu
+            // (le tableau des scores, lui, suit toutes les tailles de texte).
             ScoreStrip(model: model)
+                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
             Divider().overlay(Theme.wood.opacity(0.4))
             ScrollView {
                 VStack(spacing: 22) {
@@ -81,6 +84,7 @@ struct GameView: View {
                 .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.coachTip)
             }
             ActionPanel(model: model)
+                .dynamicTypeSize(...DynamicTypeSize.accessibility2)
         }
         .navigationTitle(Text("Tour \(model.engine.currentTurn.number)"))
         .navigationBarTitleDisplayMode(.inline)

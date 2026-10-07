@@ -1,0 +1,3331 @@
+{
+  "sourceLanguage": "fr",
+  "strings": {
+    "": {
+      "shouldTranslate": false
+    },
+    "%@ (%lld)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (%2$lld)"
+          }
+        }
+      }
+    },
+    "%@ : %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%@ : %@ %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ %3$@"
+          }
+        }
+      }
+    },
+    "%@ : %@ pour le plus rapide": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ for the fastest"
+          }
+        }
+      }
+    },
+    "%@ : 0 point": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: 0 points"
+          }
+        }
+      }
+    },
+    "%@ : le plus lent perd %lld points": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: the slowest loses %2$lld points"
+          }
+        }
+      }
+    },
+    "%@ a été le plus lent et perd %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ was the slowest and loses %2$lld points."
+          }
+        }
+      }
+    },
+    "%@ a été le plus rapide et remporte %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ was the fastest and wins %2$lld points."
+          }
+        }
+      }
+    },
+    "%@ défie %@ : %@ pour %lld points": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ challenges %2$@: %3$@ for %4$lld points"
+          }
+        }
+      }
+    },
+    "%@ gagne une grelottine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ earns a grelottine"
+          }
+        }
+      }
+    },
+    "%@ joue un civet de %lld sur « %@ »": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ bets a civet of %2$lld on “%3$@”"
+          }
+        }
+      }
+    },
+    "%@ n'ont pas tapé à temps et perdent %lld points chacun.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ didn't tap in time and lose %2$lld points each."
+          }
+        }
+      }
+    },
+    "%@ perd %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ loses %2$lld points."
+          }
+        }
+      }
+    },
+    "%@ perdent %lld points chacun.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ lose %2$lld points each."
+          }
+        }
+      }
+    },
+    "%@ peut aussi siroter : relancer le dernier dé en espérant un %lld. Réussi, c'est un cul de chouette ; raté, la chouette est perdue.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ may also sip (sirotage): reroll the last die hoping for a %2$lld. Success makes a cul de chouette; failure loses the chouette."
+          }
+        }
+      }
+    },
+    "%@ peut siroter sa chouette de %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ may sip their chouette of %2$lld"
+          }
+        }
+      }
+    },
+    "%@ relève le défi de %@ : il lui faut « %@ ».": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ takes up %2$@’s challenge and needs “%3$@”."
+          }
+        }
+      }
+    },
+    "%@ remporte %lld points !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ wins %2$lld points!"
+          }
+        }
+      }
+    },
+    "%@ réussit : %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ succeeds: %2$@"
+          }
+        }
+      }
+    },
+    "%@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "%@ échoue : %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ fails: %2$@"
+          }
+        }
+      }
+    },
+    "%@, %lld points": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$lld points"
+          }
+        }
+      }
+    },
+    "%lld": {
+      "shouldTranslate": false
+    },
+    "%lld + %lld = %lld : la somme de deux dés donne le troisième, c'est une velute. Elle rapporte deux fois le carré du grand dé : %@ %@ pour %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld + %2$lld = %3$lld: two dice add up to the third, that's a velute. It scores twice the square of the highest die: %4$@ %5$@ for %6$@."
+          }
+        }
+      }
+    },
+    "%lld dé(s) reconnu(s) sur %lld. Complétez en touchant les dés ci-dessous.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld of %2$lld dice recognized. Complete by tapping the dice below."
+          }
+        }
+      }
+    },
+    "%lld et %lld font une chouette, et %lld + %lld = %lld fait une velute ! Dans ce cas, tout le monde peut gagner : le premier qui tape sa zone en criant « Pas mou le caillou ! » remporte %@ %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld and %2$lld make a chouette, and %3$lld + %4$lld = %5$lld makes a velute! Now anyone can win: the first to tap their zone shouting “Pas mou le caillou !” takes %6$@ %7$@."
+          }
+        }
+      }
+    },
+    "%lld ms": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ms"
+          }
+        }
+      }
+    },
+    "%lld points": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld points"
+          }
+        }
+      }
+    },
+    "%lld points en %lld tours": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld points in %2$lld turns"
+          }
+        }
+      }
+    },
+    "%lld tours · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld turns · %2$@"
+          }
+        }
+      }
+    },
+    "%lld – %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld – %2$@"
+          }
+        }
+      }
+    },
+    "%lld, %lld, %lld se suivent : c'est une suite. Tout le monde doit taper sa zone en criant « Grelotte ça picote ! » dès le signal. Le plus lent perd %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld, %2$lld, %3$lld follow each other: that's a suite. Everyone must tap their zone shouting “Grelotte ça picote !” at the signal. The slowest loses %4$lld points."
+          }
+        }
+      }
+    },
+    "%lld. %@, %lld points sur %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld. %2$@, %3$lld points out of %4$lld"
+          }
+        }
+      }
+    },
+    "%llde": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "#%lld"
+          }
+        }
+      }
+    },
+    "Accueil": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home"
+          }
+        }
+      }
+    },
+    "Action impossible pour le moment.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That action isn't possible right now."
+          }
+        }
+      }
+    },
+    "Activée": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On"
+          }
+        }
+      }
+    },
+    "Adversaire": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opponent"
+          }
+        }
+      }
+    },
+    "Affichage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View"
+          }
+        }
+      }
+    },
+    "Afficher les scores": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show the scores"
+          }
+        }
+      }
+    },
+    "Aide": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Help"
+          }
+        }
+      }
+    },
+    "Ajouter %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add %@"
+          }
+        }
+      }
+    },
+    "Ajouter un joueur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add a player"
+          }
+        }
+      }
+    },
+    "Annuler": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Annuler le dernier coup": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo last move"
+          }
+        }
+      }
+    },
+    "Aperçu de l'appareil photo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera preview"
+          }
+        }
+      }
+    },
+    "Après une chouette, le lanceur peut relancer le dernier dé en annonçant le nom de sa chouette (Linotte, Alouette, Fauvette, Mouette, Bergeronnette ou Chouette, de 1 à 6). S'il obtient la même valeur, il marque un cul de chouette ; sinon, il ne marque rien. Les autres joueurs peuvent parier sur le résultat.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After a chouette, the roller may reroll the last die while calling the name of their chouette (Linotte, Alouette, Fauvette, Mouette, Bergeronnette or Chouette, from 1 to 6). If it matches, they score a cul de chouette; otherwise they score nothing. Other players can bet on the result."
+          }
+        }
+      }
+    },
+    "Après une chouette, le lanceur peut relancer le dernier dé en annonçant le nom de sa chouette (Linotte, Alouette, Fauvette, Mouette, Bergeronnette ou Chouette, de 1 à 6). S'il obtient la même valeur, il marque un cul de chouette ; sinon, il perd les points de sa chouette. Les autres joueurs peuvent parier sur le résultat.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After a chouette, the roller may reroll the last die while calling the name of their chouette (Linotte, Alouette, Fauvette, Mouette, Bergeronnette or Chouette, from 1 to 6). If it matches, they score a cul de chouette; otherwise they lose their chouette's points. Other players can bet on the result."
+          }
+        }
+      }
+    },
+    "Archère": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archer"
+          }
+        }
+      }
+    },
+    "Atteindre ou dépasser": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reach or exceed"
+          }
+        }
+      }
+    },
+    "Attendez le signal…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wait for the signal…"
+          }
+        }
+      }
+    },
+    "Au tour de %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@'s turn"
+          }
+        }
+      }
+    },
+    "Aucun appareil photo disponible. Choisissez une photo de vos dés.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No camera available. Choose a photo of your dice."
+          }
+        }
+      }
+    },
+    "Aucun tour joué": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No turns played"
+          }
+        }
+      }
+    },
+    "Aucune combinaison : c'est un néant, pas de points ce tour-ci.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No combination: that's a néant, no points this turn."
+          }
+        }
+      }
+    },
+    "Aucune combinaison : le lanceur ne marque rien.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No combination: the roller scores nothing."
+          }
+        }
+      }
+    },
+    "Aucune partie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No games"
+          }
+        }
+      }
+    },
+    "Augmente la valeur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Increases the value"
+          }
+        }
+      }
+    },
+    "Autre exemple": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another example"
+          }
+        }
+      }
+    },
+    "Avant de lancer, un joueur peut parier jusqu'à %lld points sur la figure qu'il va obtenir. Gagné, il empoche la mise ; perdu, il la perd. Une fois par partie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before rolling, a player may bet up to %lld points on the combination they will get. If they get it, they win the stake; if not, they lose it. Once per game."
+          }
+        }
+      }
+    },
+    "Avant la relance, les autres joueurs peuvent parier sur la valeur du dé. Chaque pari juste rapporte %lld points, que le sirotage réussisse ou non.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before the reroll, the other players can bet on the die. Each correct bet earns %lld points, whether the sirotage succeeds or not."
+          }
+        }
+      }
+    },
+    "Avatar : %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avatar: %@"
+          }
+        }
+      }
+    },
+    "Barde": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bard"
+          }
+        }
+      }
+    },
+    "Barème": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scoring"
+          }
+        }
+      }
+    },
+    "Bienvenue à la table !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to the table!"
+          }
+        }
+      }
+    },
+    "Bouffon": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jester"
+          }
+        }
+      }
+    },
+    "Bruitages": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sound effects"
+          }
+        }
+      }
+    },
+    "Bévue": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bévue"
+          }
+        }
+      }
+    },
+    "Bévue ! Trop tôt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bévue! Too early"
+          }
+        }
+      }
+    },
+    "Bévue : faux départ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bévue: false start"
+          }
+        }
+      }
+    },
+    "Bévue activée : taper avant le signal coûte %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bévue is on: tapping before the signal costs %lld points."
+          }
+        }
+      }
+    },
+    "Cette partie enregistrée n'a pas pu être ouverte.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This saved game couldn't be opened."
+          }
+        }
+      }
+    },
+    "Chacun son tour, on lance trois dés et on cherche des combinaisons qui rapportent des points. Le premier à %lld points gagne. %@, à vous : lancez les dés, je vous explique chaque résultat.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each turn, a player rolls three dice looking for combinations that score points. First to %1$lld points wins. %2$@, you're up: roll the dice and I'll explain every result."
+          }
+        }
+      }
+    },
+    "Chaque lancer est expliqué en direct. Idéal pour une première partie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every roll is explained as you play. Ideal for a first game."
+          }
+        }
+      }
+    },
+    "Chevalier": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Knight"
+          }
+        }
+      }
+    },
+    "Choisir un autre avatar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose another avatar"
+          }
+        }
+      }
+    },
+    "Choisir un avatar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose an avatar"
+          }
+        }
+      }
+    },
+    "Choisir une photo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a photo"
+          }
+        }
+      }
+    },
+    "Chouette": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chouette"
+          }
+        }
+      }
+    },
+    "Chouette : multiplicateur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chouette: multiplier"
+          }
+        }
+      }
+    },
+    "Chouette de %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chouette of %lld"
+          }
+        }
+      }
+    },
+    "Chouette de %lld ! Siroter pour tenter le cul de chouette ?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chouette of %lld! Sip to try for a cul de chouette?"
+          }
+        }
+      }
+    },
+    "Chouette-velute": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chouette-velute"
+          }
+        }
+      }
+    },
+    "Chouette-velute de %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chouette-velute of %lld"
+          }
+        }
+      }
+    },
+    "Chouettes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chouettes"
+          }
+        }
+      }
+    },
+    "Civet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Civet"
+          }
+        }
+      }
+    },
+    "Civet : %lld points sur « %@ »": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Civet: %1$lld points on “%2$@”"
+          }
+        }
+      }
+    },
+    "Civet de %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@'s civet"
+          }
+        }
+      }
+    },
+    "Civet gagné (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Civet won (%@)"
+          }
+        }
+      }
+    },
+    "Civet perdu (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Civet lost (%@)"
+          }
+        }
+      }
+    },
+    "Civets par joueur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Civets per player"
+          }
+        }
+      }
+    },
+    "Classement": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ranking"
+          }
+        }
+      }
+    },
+    "Commencer la partie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start the game"
+          }
+        }
+      }
+    },
+    "Confort": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comfort"
+          }
+        }
+      }
+    },
+    "Conseil : %@. %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: %1$@. %2$@"
+          }
+        }
+      }
+    },
+    "Consolation : %@ gagne une grelottine. Au début d'un prochain tour, elle permet de défier un autre joueur sur une figure, avec une mise.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consolation: %@ earns a grelottine. At the start of a later turn, it lets them challenge another player on a combination, with a stake."
+          }
+        }
+      }
+    },
+    "Coup annulé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move undone"
+          }
+        }
+      }
+    },
+    "Cul": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul"
+          }
+        }
+      }
+    },
+    "Cul de Chouette": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul de Chouette"
+          }
+        }
+      }
+    },
+    "Cul de chouette": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul de chouette"
+          }
+        }
+      }
+    },
+    "Cul de chouette : base": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul de chouette: base"
+          }
+        }
+      }
+    },
+    "Cul de chouette : par point": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul de chouette: per pip"
+          }
+        }
+      }
+    },
+    "Cul de chouette de %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul de chouette of %lld"
+          }
+        }
+      }
+    },
+    "Culs de chouette": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Culs de chouette"
+          }
+        }
+      }
+    },
+    "De 2 à 8 joueurs, chacun son tour, on lance trois dés. Certaines combinaisons rapportent des points, d'autres en font perdre.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For 2 to 8 players: take turns rolling three dice. Some combinations score points, others cost points."
+          }
+        }
+      }
+    },
+    "Deux combinaisons font jouer toute la table. L'app affiche une zone par joueur : au signal, chacun tape la sienne en criant la phrase.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two combinations involve the whole table. The app shows one zone per player: at the signal, everyone taps theirs while shouting the phrase."
+          }
+        }
+      }
+    },
+    "Deux dés identiques : c'est une chouette. Elle rapporte la valeur au carré : %@ %@ pour %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two matching dice: that's a chouette. It scores the value squared: %1$@ %2$@ for %3$@."
+          }
+        }
+      }
+    },
+    "Deux dés identiques. Le lanceur marque la valeur du dé au carré.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two matching dice. The roller scores the die value squared."
+          }
+        }
+      }
+    },
+    "Deux joueurs portent le même nom.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two players have the same name."
+          }
+        }
+      }
+    },
+    "Dragon": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dragon"
+          }
+        }
+      }
+    },
+    "Dé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die"
+          }
+        }
+      }
+    },
+    "Dé %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die %lld"
+          }
+        }
+      }
+    },
+    "Dé %lld : %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die %1$lld: %2$lld"
+          }
+        }
+      }
+    },
+    "Dé %lld : chouette %lld, cul de chouette %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die %1$lld: chouette %2$lld, cul de chouette %3$lld"
+          }
+        }
+      }
+    },
+    "Dé %lld : chouette %lld, velute %lld, cul de chouette %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die %1$lld: chouette %2$lld, velute %3$lld, cul de chouette %4$lld"
+          }
+        }
+      }
+    },
+    "Dé %lld : non lu": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die %lld: not read"
+          }
+        }
+      }
+    },
+    "Dé : %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die: %lld"
+          }
+        }
+      }
+    },
+    "Dé non lancé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die not rolled"
+          }
+        }
+      }
+    },
+    "Défier": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge"
+          }
+        }
+      }
+    },
+    "Défiez un joueur : il lance les dés. S'il obtient la figure, il vous prend la mise ; sinon, c'est vous qui la lui prenez.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge a player: they roll the dice. If they get the combination, they take your stake; otherwise you take theirs."
+          }
+        }
+      }
+    },
+    "Dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dice"
+          }
+        }
+      }
+    },
+    "Dés : %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dice: %@"
+          }
+        }
+      }
+    },
+    "Dés du joueur défié": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenged player's dice"
+          }
+        }
+      }
+    },
+    "Dés pas encore lancés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dice not rolled yet"
+          }
+        }
+      }
+    },
+    "Dés reconnus ! Vérifiez puis validez, ou touchez un dé pour le corriger.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dice recognized! Check and confirm, or tap a die to correct it."
+          }
+        }
+      }
+    },
+    "Dés virtuels": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Virtual dice"
+          }
+        }
+      }
+    },
+    "Désactivée": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        }
+      }
+    },
+    "Désactivées, ce sont les règles traditionnelles qui s'appliquent.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When off, the traditional rules apply."
+          }
+        }
+      }
+    },
+    "Détail des scores": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score details"
+          }
+        }
+      }
+    },
+    "Elfe": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elf"
+          }
+        }
+      }
+    },
+    "En cours": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In progress"
+          }
+        }
+      }
+    },
+    "En partie, ce serait une bévue. Touchez pour réessayer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In a game, that would be a bévue. Tap to try again."
+          }
+        }
+      }
+    },
+    "Enchanteur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wizard"
+          }
+        }
+      }
+    },
+    "Fermer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "Figure": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Combination"
+          }
+        }
+      }
+    },
+    "Figure à réussir": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Combination to roll"
+          }
+        }
+      }
+    },
+    "Filmez le dé de dessus, sur un fond sombre et uni.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Film the die from above, on a dark plain surface."
+          }
+        }
+      }
+    },
+    "Filmez les dés de dessus, sur un fond sombre et uni, sans qu'ils se touchent.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Film the dice from above, on a dark plain surface, without them touching."
+          }
+        }
+      }
+    },
+    "Fin de partie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End of game"
+          }
+        }
+      }
+    },
+    "Gain d'un pari juste": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reward for a correct bet"
+          }
+        }
+      }
+    },
+    "Garder la chouette (%lld points)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep the chouette (%lld points)"
+          }
+        }
+      }
+    },
+    "Grelotte ça picote !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grelotte ça picote !"
+          }
+        }
+      }
+    },
+    "Grelotte ça picote : trop lent": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grelotte ça picote: too slow"
+          }
+        }
+      }
+    },
+    "Grelottine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grelottine"
+          }
+        }
+      }
+    },
+    "Grelottine : mise limitée aux scores": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grelottine: stake limited by scores"
+          }
+        }
+      }
+    },
+    "Grelottine gagnée (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grelottine won (%@)"
+          }
+        }
+      }
+    },
+    "Grelottine perdue (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grelottine lost (%@)"
+          }
+        }
+      }
+    },
+    "Impossible de commencer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can't start"
+          }
+        }
+      }
+    },
+    "Impossible de lancer la revanche.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't start the rematch."
+          }
+        }
+      }
+    },
+    "Jouer une première partie guidée": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play a guided first game"
+          }
+        }
+      }
+    },
+    "Joueur %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Player %lld"
+          }
+        }
+      }
+    },
+    "Joueurs (%lld/8)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Players (%lld/8)"
+          }
+        }
+      }
+    },
+    "Joueurs récents": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent players"
+          }
+        }
+      }
+    },
+    "L'accès à l'appareil photo est refusé. Autorisez-le dans Réglages, ou choisissez une photo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera access is denied. Allow it in Settings, or choose a photo."
+          }
+        }
+      }
+    },
+    "L'app lance les dés pour vous.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app rolls the dice for you."
+          }
+        }
+      }
+    },
+    "L'ordre de la liste est l'ordre de jeu. Touchez « Modifier » pour réordonner ou supprimer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The list order is the playing order. Tap “Edit” to reorder or delete."
+          }
+        }
+      }
+    },
+    "La partie n'a pas pu être enregistrée.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The game couldn't be saved."
+          }
+        }
+      }
+    },
+    "La somme de deux dés est égale au troisième. Le lanceur marque deux fois le carré du plus grand dé.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two dice add up to the third. The roller scores twice the square of the highest die."
+          }
+        }
+      }
+    },
+    "La velute se lit sur le plus grand dé : il vaut au moins 3 (1 + 2).": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A velute is read on the highest die, which is at least 3 (1 + 2)."
+          }
+        }
+      }
+    },
+    "Lance les dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rolls the dice"
+          }
+        }
+      }
+    },
+    "Lancer 1-2-3": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1-2-3 roll"
+          }
+        }
+      }
+    },
+    "Lancer les dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll the dice"
+          }
+        }
+      }
+    },
+    "Lancer pour %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll for %@"
+          }
+        }
+      }
+    },
+    "Lancez les trois dés.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll the three dice."
+          }
+        }
+      }
+    },
+    "Lancez vos dés et saisissez les valeurs.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll your dice and enter the values."
+          }
+        }
+      }
+    },
+    "Lancez vos dés, l'appareil photo lit les valeurs.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll your dice, the camera reads the values."
+          }
+        }
+      }
+    },
+    "Lancez vos trois dés puis filmez-les.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll your three dice, then film them."
+          }
+        }
+      }
+    },
+    "Lancez vos trois dés puis saisissez les valeurs.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll your three dice, then enter the values."
+          }
+        }
+      }
+    },
+    "Le but du jeu": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The goal"
+          }
+        }
+      }
+    },
+    "Le dernier qui tape perd des points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The last to tap loses points."
+          }
+        }
+      }
+    },
+    "Le dé tombe sur %lld : raté.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The die lands on %lld: missed."
+          }
+        }
+      }
+    },
+    "Le dé tombe sur %lld : sirotage réussi !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The die lands on %lld: sirotage succeeded!"
+          }
+        }
+      }
+    },
+    "Le jeu de dés de taverne, de 2 à 8 joueurs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The tavern dice game for 2 to 8 players"
+          }
+        }
+      }
+    },
+    "Le lanceur garde sa chouette sur une chouette-velute": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roller keeps their chouette on a chouette-velute"
+          }
+        }
+      }
+    },
+    "Le premier qui atteint %lld points gagne la partie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The first to reach %lld points wins the game."
+          }
+        }
+      }
+    },
+    "Le premier qui atteint exactement %lld points gagne la partie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The first to reach exactly %lld points wins the game."
+          }
+        }
+      }
+    },
+    "Le premier qui tape gagne la velute.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The first to tap wins the velute."
+          }
+        }
+      }
+    },
+    "Les autres joueurs peuvent parier sur le dé.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The other players can bet on the die."
+          }
+        }
+      }
+    },
+    "Les combinaisons": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Combinations"
+          }
+        }
+      }
+    },
+    "Les cris": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shouts"
+          }
+        }
+      }
+    },
+    "Les dés roulent": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The dice are rolling"
+          }
+        }
+      }
+    },
+    "Les dés roulent sur la table": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The dice are rolling on the table"
+          }
+        }
+      }
+    },
+    "Les lancers apparaîtront ici.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rolls will appear here."
+          }
+        }
+      }
+    },
+    "Les paris sont ouverts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bets are open"
+          }
+        }
+      }
+    },
+    "Les règles choisies ici s'appliquent aux nouvelles parties. Une partie en cours garde ses règles.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules chosen here apply to new games. A game in progress keeps its rules."
+          }
+        }
+      }
+    },
+    "Lire le dé relancé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read the rerolled die"
+          }
+        }
+      }
+    },
+    "Lire mes dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read my dice"
+          }
+        }
+      }
+    },
+    "Masquer le conseil": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide the tip"
+          }
+        }
+      }
+    },
+    "Maximum : %lld points": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum: %lld points"
+          }
+        }
+      }
+    },
+    "Meilleur temps : %lld ms": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best time: %lld ms"
+          }
+        }
+      }
+    },
+    "Meilleur tour": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best turn"
+          }
+        }
+      }
+    },
+    "Mes dés, lus à la caméra": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My dice, read by the camera"
+          }
+        }
+      }
+    },
+    "Mes propres dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My own dice"
+          }
+        }
+      }
+    },
+    "Mini-jeu en cours…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mini-game in progress…"
+          }
+        }
+      }
+    },
+    "Mise": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stake"
+          }
+        }
+      }
+    },
+    "Mise maximale": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum stake"
+          }
+        }
+      }
+    },
+    "Musique et ambiance de taverne": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music and tavern ambience"
+          }
+        }
+      }
+    },
+    "Nouvelle partie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New game"
+          }
+        }
+      }
+    },
+    "Néant": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Néant"
+          }
+        }
+      }
+    },
+    "Néants": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Néants"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "Optionnelles, à activer dans les réglages pour pimenter les parties.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional: turn them on in Settings to spice up your games."
+          }
+        }
+      }
+    },
+    "Oups": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oops"
+          }
+        }
+      }
+    },
+    "Pari gagné sur le %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Winning bet on %lld"
+          }
+        }
+      }
+    },
+    "Parier": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bet"
+          }
+        }
+      }
+    },
+    "Pariez sur la figure de votre prochain lancer. Gagné : vous empochez la mise. Perdu : vous la perdez. Un seul civet par partie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bet on the combination of your next roll. Win: you pocket the stake. Lose: you lose it. One civet per game."
+          }
+        }
+      }
+    },
+    "Paris": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bets"
+          }
+        }
+      }
+    },
+    "Paris des autres joueurs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other players' bets"
+          }
+        }
+      }
+    },
+    "Partie guidée": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guided game"
+          }
+        }
+      }
+    },
+    "Partie illisible": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unreadable game"
+          }
+        }
+      }
+    },
+    "Parties précédentes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Past games"
+          }
+        }
+      }
+    },
+    "Pas de dés ? L'app les lance pour vous. Vous avez les vôtres ? Choisissez « Mes propres dés » et saisissez simplement les valeurs.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No dice? The app rolls them for you. Got your own? Choose “My own dice” and just enter the values."
+          }
+        }
+      }
+    },
+    "Pas de pari": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No bet"
+          }
+        }
+      }
+    },
+    "Pas encore…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not yet…"
+          }
+        }
+      }
+    },
+    "Pas mou le caillou !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas mou le caillou !"
+          }
+        }
+      }
+    },
+    "Pas mou le caillou : velute gagnée": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas mou le caillou: velute won"
+          }
+        }
+      }
+    },
+    "Personne n'a crié !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nobody shouted!"
+          }
+        }
+      }
+    },
+    "Personne n'a crié à temps.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nobody shouted in time."
+          }
+        }
+      }
+    },
+    "Personne n'a tapé à temps : la velute n'est attribuée à personne.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nobody tapped in time: nobody gets the velute."
+          }
+        }
+      }
+    },
+    "Personne ne perd de points cette fois.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nobody loses points this time."
+          }
+        }
+      }
+    },
+    "Personne ne perd de points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nobody loses points."
+          }
+        }
+      }
+    },
+    "Photo des dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photo of the dice"
+          }
+        }
+      }
+    },
+    "Points gagnés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points won"
+          }
+        }
+      }
+    },
+    "Points perdus": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points lost"
+          }
+        }
+      }
+    },
+    "Posez le téléphone au milieu de la table. Chacun a sa zone. Au signal, tapez la vôtre en criant « Grelotte ça picote ! ». Le plus lent perd %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Put the phone in the middle of the table. Everyone has a zone. At the signal, tap yours shouting “Grelotte ça picote !”. The slowest loses %lld points."
+          }
+        }
+      }
+    },
+    "Posez le téléphone au milieu de la table. Chacun a sa zone. Au signal, tapez la vôtre en criant « Pas mou le caillou ! ». Le plus rapide gagne %lld points. Taper trop tôt ne compte pas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Put the phone in the middle of the table. Everyone has a zone. At the signal, tap yours shouting “Pas mou le caillou !”. The fastest wins %lld points. Tapping too early doesn't count."
+          }
+        }
+      }
+    },
+    "Pour s'entraîner": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Practice"
+          }
+        }
+      }
+    },
+    "Premier ! 🏆": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First! 🏆"
+          }
+        }
+      }
+    },
+    "Premier joueur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First player"
+          }
+        }
+      }
+    },
+    "Prendre les paris": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Take bets"
+          }
+        }
+      }
+    },
+    "Préparez-vous à crier !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get ready to shout!"
+          }
+        }
+      }
+    },
+    "Prêts ? C'est parti !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready? Let's go!"
+          }
+        }
+      }
+    },
+    "Pénalité de faux départ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "False start penalty"
+          }
+        }
+      }
+    },
+    "Pénalité de suite": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suite penalty"
+          }
+        }
+      }
+    },
+    "Qui commence ?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who goes first?"
+          }
+        }
+      }
+    },
+    "Reine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queen"
+          }
+        }
+      }
+    },
+    "Relancer le dé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reroll the die"
+          }
+        }
+      }
+    },
+    "Reprendre la partie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume game"
+          }
+        }
+      }
+    },
+    "Revanche !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rematch!"
+          }
+        }
+      }
+    },
+    "Revenir à la table": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back to the table"
+          }
+        }
+      }
+    },
+    "Roi": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "King"
+          }
+        }
+      }
+    },
+    "Règles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules"
+          }
+        }
+      }
+    },
+    "Règles avancées": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advanced rules"
+          }
+        }
+      }
+    },
+    "Règles de base": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basic rules"
+          }
+        }
+      }
+    },
+    "Règles du jeu": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How to play"
+          }
+        }
+      }
+    },
+    "Réflexes gagnés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shouts won"
+          }
+        }
+      }
+    },
+    "Réglages": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Résultat du cri": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shout result"
+          }
+        }
+      }
+    },
+    "Rétablir": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        }
+      }
+    },
+    "Rétablir les règles traditionnelles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset to traditional rules"
+          }
+        }
+      }
+    },
+    "Rétablir toutes les règles par défaut ?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset all rules to defaults?"
+          }
+        }
+      }
+    },
+    "S'entraîner": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Practice"
+          }
+        }
+      }
+    },
+    "Saisir le dé relancé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter the rerolled die"
+          }
+        }
+      }
+    },
+    "Saisir mes dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter my dice"
+          }
+        }
+      }
+    },
+    "Score exact": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exact score"
+          }
+        }
+      }
+    },
+    "Score à atteindre": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target score"
+          }
+        }
+      }
+    },
+    "Scores": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scores"
+          }
+        }
+      }
+    },
+    "Scores négatifs autorisés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow negative scores"
+          }
+        }
+      }
+    },
+    "Secouez le téléphone ou lancez d'un geste sur une table de taverne.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shake the phone or flick the dice across a tavern table."
+          }
+        }
+      }
+    },
+    "Secouez le téléphone ou lancez d'un geste vers le haut": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shake the phone or flick upward to throw"
+          }
+        }
+      }
+    },
+    "Sirotage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sirotage"
+          }
+        }
+      }
+    },
+    "Sirotage : après une chouette, relancer le dernier dé pour tenter le cul de chouette. Bévue : taper avant le signal coûte des points. Civet : parier sur son prochain lancer. Grelottine : gagnée sur un néant, permet de défier un joueur.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sirotage: after a chouette, reroll the last die to try for a cul de chouette. Bévue: tapping before the signal costs points. Civet: bet on your next roll. Grelottine: earned on a néant, lets you challenge a player."
+          }
+        }
+      }
+    },
+    "Sirotage raté": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sirotage failed"
+          }
+        }
+      }
+    },
+    "Sirotage raté sans pénalité": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No penalty for a failed sirotage"
+          }
+        }
+      }
+    },
+    "Sirotage réussi": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sirotage succeeded"
+          }
+        }
+      }
+    },
+    "Siroter !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sip!"
+          }
+        }
+      }
+    },
+    "Statistiques": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistics"
+          }
+        }
+      }
+    },
+    "Suite": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suite"
+          }
+        }
+      }
+    },
+    "Suite %lld-%lld-%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suite %1$lld-%2$lld-%3$lld"
+          }
+        }
+      }
+    },
+    "Suite : seul le plus lent des joueurs ayant tapé perd": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suite: only the slowest player who tapped loses"
+          }
+        }
+      }
+    },
+    "Suite seule": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suite only"
+          }
+        }
+      }
+    },
+    "Suites": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suites"
+          }
+        }
+      }
+    },
+    "Sur quelle valeur tombera le dé relancé ? Chaque pari juste rapporte %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Which value will the rerolled die show? Each correct bet earns %lld points."
+          }
+        }
+      }
+    },
+    "Sur une chouette-velute. Le plus rapide gagne la velute.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On a chouette-velute. The fastest wins the velute."
+          }
+        }
+      }
+    },
+    "Sur une suite. Le plus lent perd %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On a suite. The slowest loses %lld points."
+          }
+        }
+      }
+    },
+    "TAPEZ !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TAP!"
+          }
+        }
+      }
+    },
+    "Table 3D": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3D table"
+          }
+        }
+      }
+    },
+    "Table de jeu en 3D, dés pas encore lancés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3D game table, dice not rolled yet"
+          }
+        }
+      }
+    },
+    "Table de jeu en 3D. Dés : %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3D game table. Dice: %@"
+          }
+        }
+      }
+    },
+    "Table des points": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points table"
+          }
+        }
+      }
+    },
+    "Tableau des scores": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scoreboard"
+          }
+        }
+      }
+    },
+    "Taper avant le signal pendant un cri coûte %lld points, et le tap ne compte pas.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tapping before the signal during a shout costs %lld points, and the tap doesn't count."
+          }
+        }
+      }
+    },
+    "Tavernier": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Innkeeper"
+          }
+        }
+      }
+    },
+    "Testeur de lancer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll tester"
+          }
+        }
+      }
+    },
+    "Tirage au sort": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Random draw"
+          }
+        }
+      }
+    },
+    "Touchez !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap!"
+          }
+        }
+      }
+    },
+    "Touchez l'écran dès qu'il change de couleur.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the screen as soon as it changes color."
+          }
+        }
+      }
+    },
+    "Touchez pour réessayer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to try again."
+          }
+        }
+      }
+    },
+    "Touchez un dé pour changer sa valeur.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a die to change its value."
+          }
+        }
+      }
+    },
+    "Touchez un dé pour corriger sa valeur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a die to correct its value"
+          }
+        }
+      }
+    },
+    "Tour %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn %lld"
+          }
+        }
+      }
+    },
+    "Tour %lld · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn %1$lld · %2$@"
+          }
+        }
+      }
+    },
+    "Tours": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turns"
+          }
+        }
+      }
+    },
+    "Tours joués": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turns played"
+          }
+        }
+      }
+    },
+    "Tout alléger": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lighten everything"
+          }
+        }
+      }
+    },
+    "Trois dés identiques : le fameux cul de chouette ! %@ %@ pour %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Three matching dice: the famous cul de chouette! %1$@ %2$@ for %3$@."
+          }
+        }
+      }
+    },
+    "Trois dés identiques. Le lanceur marque %lld points, plus %lld fois la valeur du dé.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Three matching dice. The roller scores %1$lld points plus %2$lld times the die value."
+          }
+        }
+      }
+    },
+    "Trois valeurs qui se suivent. Tous les joueurs tapent leur zone en criant « Grelotte ça picote ! » : le plus lent perd %lld points.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Three consecutive values. Every player taps their zone shouting “Grelotte ça picote !”: the slowest loses %lld points."
+          }
+        }
+      }
+    },
+    "Troll": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troll"
+          }
+        }
+      }
+    },
+    "Trop lent !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too slow!"
+          }
+        }
+      }
+    },
+    "Trop tard": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too late"
+          }
+        }
+      }
+    },
+    "Trop tôt !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too early!"
+          }
+        }
+      }
+    },
+    "Un néant donne une grelottine. Au début d'un tour, son détenteur peut défier un autre joueur : celui-ci lance les dés et doit obtenir la figure choisie. Réussi, il prend la mise au défieur ; raté, c'est l'inverse.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A néant earns a grelottine. At the start of a turn, its holder may challenge another player, who rolls the dice and must get the chosen combination. If they do, they take the stake from the challenger; if not, the reverse."
+          }
+        }
+      }
+    },
+    "Une chouette qui est aussi une velute : 1-1-2, 2-2-4 ou 3-3-6. Le premier joueur qui tape sa zone en criant « Pas mou le caillou ! » remporte les points de la velute.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A chouette that is also a velute: 1-1-2, 2-2-4 or 3-3-6. The first player to tap their zone shouting “Pas mou le caillou !” wins the velute points."
+          }
+        }
+      }
+    },
+    "Valeur du dé relancé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rerolled die value"
+          }
+        }
+      }
+    },
+    "Valeurs corrigées à la main. Vérifiez puis validez.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Values corrected by hand. Check and confirm."
+          }
+        }
+      }
+    },
+    "Valeurs des trois dés": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Values of the three dice"
+          }
+        }
+      }
+    },
+    "Valider": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm"
+          }
+        }
+      }
+    },
+    "Variantes allégées": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lighter variants"
+          }
+        }
+      }
+    },
+    "Velute": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velute"
+          }
+        }
+      }
+    },
+    "Velute : multiplicateur": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velute: multiplier"
+          }
+        }
+      }
+    },
+    "Velute de %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velute of %lld"
+          }
+        }
+      }
+    },
+    "Velute puis suite": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velute then suite"
+          }
+        }
+      }
+    },
+    "Velute seule": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velute only"
+          }
+        }
+      }
+    },
+    "Velutes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velutes"
+          }
+        }
+      }
+    },
+    "Vibrations": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haptics"
+          }
+        }
+      }
+    },
+    "Victoire": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Victory"
+          }
+        }
+      }
+    },
+    "Victoire de %@ !": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ wins!"
+          }
+        }
+      }
+    },
+    "Vos parties apparaîtront ici.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your games will appear here."
+          }
+        }
+      }
+    },
+    "a une grelottine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "has a grelottine"
+          }
+        }
+      }
+    },
+    "bévue": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bévue"
+          }
+        }
+      }
+    },
+    "civet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "civet"
+          }
+        }
+      }
+    },
+    "grelottine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "grelottine"
+          }
+        }
+      }
+    },
+    "point": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "point"
+          }
+        }
+      }
+    },
+    "points": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "points"
+          }
+        }
+      }
+    },
+    "règles traditionnelles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "traditional rules"
+          }
+        }
+      }
+    },
+    "sans règles avancées": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no advanced rules"
+          }
+        }
+      }
+    },
+    "sirotage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sirotage"
+          }
+        }
+      }
+    },
+    "variantes allégées": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "lighter variants"
+          }
+        }
+      }
+    },
+    "« %@ ! » Relancez le dernier dé.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@!” Reroll the last die."
+          }
+        }
+      }
+    },
+    "« %@ »": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”"
+          }
+        }
+      }
+    },
+    "à son tour": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "their turn"
+          }
+        }
+      }
+    },
+    "—": {
+      "shouldTranslate": false
+    },
+    "🏆": {
+      "shouldTranslate": false
+    },
+    "🦉": {
+      "shouldTranslate": false
+    }
+  },
+  "version": "1.0"
+}

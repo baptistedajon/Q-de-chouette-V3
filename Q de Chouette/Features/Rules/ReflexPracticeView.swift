@@ -66,6 +66,7 @@ struct ReflexPracticeView: View {
         guard !Task.isCancelled, stage == .waiting else { return }
         stage = .signal(since: ProcessInfo.processInfo.systemUptime)
         tick += 1
+        SoundEngine.shared.play(.signal)
         if UIAccessibility.isVoiceOverRunning {
             AccessibilityNotification.Announcement(kind.phrase).post()
         }

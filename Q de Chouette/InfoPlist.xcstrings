@@ -1,0 +1,38 @@
+{
+  "sourceLanguage": "fr",
+  "version": "1.0",
+  "strings": {
+    "CFBundleDisplayName": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul de Chouette"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cul de Chouette"
+          }
+        }
+      }
+    },
+    "NSCameraUsageDescription": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'appareil photo sert à lire la valeur de vos vrais dés. Les images sont analysées sur l'appareil et ne sont jamais enregistrées ni envoyées."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The camera is used to read the values of your real dice. Images are analyzed on the device and are never saved or sent."
+          }
+        }
+      }
+    }
+  }
+}

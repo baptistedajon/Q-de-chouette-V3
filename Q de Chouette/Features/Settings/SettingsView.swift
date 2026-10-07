@@ -113,6 +113,8 @@ struct SettingsView: View {
 
             Section("Confort") {
                 Toggle("Vibrations", isOn: $settings.hapticsEnabled)
+                Toggle("Bruitages", isOn: $settings.soundEffectsEnabled)
+                Toggle("Musique et ambiance de taverne", isOn: $settings.musicEnabled)
             }
             .listRowBackground(Theme.surface)
 

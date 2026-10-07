@@ -19,6 +19,8 @@ enum Theme {
     static let inkSecondary = Color(light: 0x6B5643, dark: 0xB8A68C)
     /// Couleur d'action : rouge vin.
     static let accent = Color(light: 0x8E2A23, dark: 0xE0675C)
+    /// Fond des boutons principaux : texte blanc lisible (contraste ≥ 4,5:1) dans les deux modes.
+    static let buttonFill = Color(light: 0x8E2A23, dark: 0xB8443A)
     /// Or : mises en valeur, joueur courant, victoire.
     static let gold = Color(light: 0x9C6F12, dark: 0xE2B653)
     /// Bois : bordures et séparateurs.
@@ -75,7 +77,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity, minHeight: 52)
             .padding(.horizontal)
             .foregroundStyle(Color.white)
-            .background(Theme.accent.opacity(isEnabled ? 1 : 0.4),
+            .background(Theme.buttonFill.opacity(isEnabled ? 1 : 0.4),
                         in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
             .scaleEffect(configuration.isPressed ? 0.97 : 1)
             .animation(.easeOut(duration: 0.12), value: configuration.isPressed)

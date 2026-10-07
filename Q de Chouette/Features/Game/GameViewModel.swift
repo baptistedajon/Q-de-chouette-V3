@@ -198,6 +198,7 @@ final class GameViewModel {
     private func animateAndSubmit(_ faces: [DieFace], purpose: RollPurpose, reduceMotion: Bool) async {
         let indices = targetIndices(for: purpose)
         rollingDice = Set(indices)
+        playThrowSound()
         if reduceMotion {
             try? await Task.sleep(for: .milliseconds(250))
         } else {
@@ -213,6 +214,7 @@ final class GameViewModel {
         rollingDice = []
         show(faces, purpose: purpose)
         feedback(.impact(weight: .heavy))
+        SoundEngine.shared.play(.clack)
         submit(faces, purpose: purpose)
     }
 
@@ -361,6 +363,7 @@ final class GameViewModel {
         }
         if engine.isOver {
             feedback(.success)
+            SoundEngine.shared.play(.fanfare)
         } else if gained {
             feedback(.success)
         } else if lost {
@@ -368,10 +371,10 @@ final class GameViewModel {
         }
     }
 
-    // MARK: Sons (branchés en phase 6)
+    // MARK: Sons
 
-    func playThrowSound() {}
-    func playImpactSound(intensity: Float) {}
+    func playThrowSound() { SoundEngine.shared.play(.rattle) }
+    func playImpactSound(intensity: Float) { SoundEngine.shared.play(.clack, volume: intensity) }
 
     private func feedback(_ kind: SensoryFeedback) {
         feedbackKind = kind
