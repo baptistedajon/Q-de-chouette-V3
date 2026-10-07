@@ -77,6 +77,11 @@ final class GameViewModel {
     /// En partie guidée, le mini-jeu ne démarre qu'après lecture de ses consignes.
     private(set) var reflexBriefed = true
 
+    /// Mode 3D : incrémenté quand le bouton « Lancer » est touché ; la table 3D lance alors les dés.
+    private(set) var throwRequest = 0
+    /// Incrémenté quand l'affichage des dés doit être resynchronisé (annulation).
+    private(set) var restoreTick = 0
+
     /// Incrémenté à chaque retour haptique ; la vue observe ce compteur.
     private(set) var feedbackTick = 0
     private(set) var feedbackKind = SensoryFeedback.impact
@@ -153,10 +158,30 @@ final class GameViewModel {
         switch mode {
         case .manual:
             activeSheet = .manualEntry(purpose)
+        case .table3D:
+            throwRequest &+= 1
         case .simple:
             let faces = (0..<purpose.diceCount).map { _ in DieFace.random(using: &rng) }
             await animateAndSubmit(faces, purpose: purpose, reduceMotion: reduceMotion)
         }
+    }
+
+    // MARK: Lancer physique (table 3D)
+
+    /// Début d'un lancer 3D : retourne ce qui est lancé, ou `nil` si aucun lancer n'est attendu.
+    func beginPhysicalThrow() -> RollPurpose? {
+        guard let purpose = expectedRoll, !isRolling else { return nil }
+        rollingDice = Set(targetIndices(for: purpose))
+        return purpose
+    }
+
+    /// Fin d'un lancer 3D : faces réellement tournées vers le haut.
+    func finishPhysicalThrow(_ faces: [DieFace], purpose: RollPurpose) {
+        rollingDice = []
+        guard faces.count == purpose.diceCount else { return }
+        show(faces, purpose: purpose)
+        feedback(.impact(weight: .heavy))
+        submit(faces, purpose: purpose)
     }
 
     /// Valeurs saisies à la main.
@@ -189,7 +214,7 @@ final class GameViewModel {
     }
 
     /// Dés de l'affichage concernés par un lancer.
-    private func targetIndices(for purpose: RollPurpose) -> [Int] {
+    func targetIndices(for purpose: RollPurpose) -> [Int] {
         guard purpose == .sirotage else { return [0, 1, 2] }
         return [oddDieIndex() ?? 2]
     }
@@ -255,6 +280,7 @@ final class GameViewModel {
         coachTip = nil
         reflexBriefed = !isGuided || pendingReflex == nil
         restoreDisplayedDice()
+        restoreTick &+= 1
         persist()
     }
 
@@ -338,6 +364,11 @@ final class GameViewModel {
             feedback(.warning)
         }
     }
+
+    // MARK: Sons (branchés en phase 6)
+
+    func playThrowSound() {}
+    func playImpactSound(intensity: Float) {}
 
     private func feedback(_ kind: SensoryFeedback) {
         feedbackKind = kind

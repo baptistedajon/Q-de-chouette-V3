@@ -11,6 +11,8 @@ import ChouetteRules
 enum GameMode: String, Codable, CaseIterable, Identifiable {
     /// Dés virtuels animés en 2D.
     case simple
+    /// Table 3D : dés physiques lancés d'un geste ou en secouant le téléphone.
+    case table3D
     /// Vrais dés, valeurs saisies à la main.
     case manual
 
@@ -19,6 +21,7 @@ enum GameMode: String, Codable, CaseIterable, Identifiable {
     var title: LocalizedStringResource {
         switch self {
         case .simple: "Dés virtuels"
+        case .table3D: "Table 3D"
         case .manual: "Mes propres dés"
         }
     }
@@ -26,6 +29,7 @@ enum GameMode: String, Codable, CaseIterable, Identifiable {
     var subtitle: LocalizedStringResource {
         switch self {
         case .simple: "L'app lance les dés pour vous."
+        case .table3D: "Secouez le téléphone ou lancez d'un geste sur une table de taverne."
         case .manual: "Lancez vos dés et saisissez les valeurs."
         }
     }
@@ -33,6 +37,7 @@ enum GameMode: String, Codable, CaseIterable, Identifiable {
     var systemImage: String {
         switch self {
         case .simple: "dice"
+        case .table3D: "cube"
         case .manual: "hand.point.up.left"
         }
     }

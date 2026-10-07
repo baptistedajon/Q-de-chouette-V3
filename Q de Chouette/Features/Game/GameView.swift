@@ -51,7 +51,16 @@ struct GameView: View {
             ScrollView {
                 VStack(spacing: 22) {
                     TurnHeader(model: model)
-                    DiceTray(model: model, dieSize: sizeClass == .regular ? 110 : 86)
+                    if model.mode == .table3D {
+                        VStack(spacing: 10) {
+                            Table3DView(model: model)
+                                .frame(height: sizeClass == .regular ? 460 : 330)
+                            // Rappel 2D des valeurs, plus lisible et accessible.
+                            DiceTray(model: model, dieSize: 34, compact: true)
+                        }
+                    } else {
+                        DiceTray(model: model, dieSize: sizeClass == .regular ? 110 : 86)
+                    }
                     if let tip = model.coachTip {
                         CoachCard(tip: tip, onDismiss: { model.dismissCoachTip() })
                             .transition(.opacity)
@@ -301,6 +310,8 @@ struct TurnHeader: View {
 struct DiceTray: View {
     let model: GameViewModel
     var dieSize: CGFloat = 86
+    /// Version réduite sans tapis, sous la table 3D.
+    var compact = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -314,14 +325,18 @@ struct DiceTray: View {
                     .animation(reduceMotion ? nil : .spring(duration: 0.18), value: model.diceFaces[index])
             }
         }
-        .padding(.vertical, 24)
+        .padding(.vertical, compact ? 4 : 24)
         .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: 24)
-                .fill(LinearGradient(colors: [Color(light: 0x2F5B3A, dark: 0x1E3B26), Color(light: 0x23472D, dark: 0x142A1B)],
-                                     startPoint: .top, endPoint: .bottom))
-        )
-        .overlay(RoundedRectangle(cornerRadius: 24).strokeBorder(Theme.wood, lineWidth: 6))
+        .background {
+            if !compact {
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(LinearGradient(colors: [Color(light: 0x2F5B3A, dark: 0x1E3B26), Color(light: 0x23472D, dark: 0x142A1B)],
+                                         startPoint: .top, endPoint: .bottom))
+            }
+        }
+        .overlay {
+            if !compact { RoundedRectangle(cornerRadius: 24).strokeBorder(Theme.wood, lineWidth: 6) }
+        }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityText)
     }
@@ -435,7 +450,7 @@ struct ActionPanel: View {
         Button {
             Task { await model.roll(reduceMotion: reduceMotion) }
         } label: {
-            Label(title, systemImage: model.mode == .manual ? "hand.point.up.left.fill" : "dice.fill")
+            Label(title, systemImage: model.mode.systemImage)
         }
         .buttonStyle(.primary)
         .keyboardShortcut(.defaultAction)
