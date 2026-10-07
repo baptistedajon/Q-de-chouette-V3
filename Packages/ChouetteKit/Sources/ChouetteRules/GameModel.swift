@@ -35,6 +35,27 @@ public struct ReflexChallenge: Hashable, Sendable, Codable {
     public let points: Int
 }
 
+public extension ReflexChallenge {
+    /// Gagnant d'un « Pas mou le caillou » : le plus rapide, s'il y en a un.
+    func winners(for outcome: ReflexOutcome) -> [PlayerID] {
+        guard kind == .pasMouLeCaillou, let first = outcome.tapOrder.first else { return [] }
+        return [first]
+    }
+
+    /// Perdants d'un « Grelotte ça picote », selon la règle choisie.
+    func losers(for outcome: ReflexOutcome, rules: RuleSet) -> [PlayerID] {
+        guard kind == .grelotteCaPicote else { return [] }
+        switch rules.suiteLosers {
+        case .allLate:
+            // Ceux qui n'ont pas tapé perdent tous ; si tout le monde a tapé, le dernier perd.
+            let silent = participants.filter { !outcome.tapOrder.contains($0) }
+            return silent.isEmpty ? Array(outcome.tapOrder.suffix(1)) : silent
+        case .lastTapperOnly:
+            return Array(outcome.tapOrder.suffix(1))
+        }
+    }
+}
+
 /// Résultat d'un mini-jeu de réflexe, mesuré par l'interface.
 public struct ReflexOutcome: Hashable, Sendable, Codable {
     /// Joueurs ayant tapé à temps, du plus rapide au plus lent. Sans doublon.

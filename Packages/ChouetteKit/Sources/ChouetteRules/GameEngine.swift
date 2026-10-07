@@ -221,33 +221,13 @@ public struct GameEngine: Hashable, Sendable, Codable {
             throw .invalidReflexOutcome
         }
 
-        var winners: [PlayerID] = []
-        var losers: [PlayerID] = []
-        switch challenge.kind {
-        case .pasMouLeCaillou:
-            // Le plus rapide gagne la velute. Personne n'a tapé : personne ne marque.
-            if let first = outcome.tapOrder.first {
-                winners = [first]
-                if case .chouetteVelute(_, let velute) = challenge.figure {
-                    changeScore(first, by: challenge.points, reason: .chouetteVeluteWon(veluteValue: velute), events: &events)
-                }
-            }
-        case .grelotteCaPicote:
-            switch rules.suiteLosers {
-            case .allLate:
-                // Ceux qui n'ont pas tapé perdent tous ; si tout le monde a tapé, le dernier perd.
-                let silent = challenge.participants.filter { !outcome.tapOrder.contains($0) }
-                if !silent.isEmpty {
-                    losers = silent
-                } else if let last = outcome.tapOrder.last {
-                    losers = [last]
-                }
-            case .lastTapperOnly:
-                losers = outcome.tapOrder.last.map { [$0] } ?? []
-            }
-            for loser in losers {
-                changeScore(loser, by: -challenge.points, reason: .suitePenalty, events: &events)
-            }
+        let winners = challenge.winners(for: outcome)
+        let losers = challenge.losers(for: outcome, rules: rules)
+        if let winner = winners.first, case .chouetteVelute(_, let velute) = challenge.figure {
+            changeScore(winner, by: challenge.points, reason: .chouetteVeluteWon(veluteValue: velute), events: &events)
+        }
+        for loser in losers {
+            changeScore(loser, by: -challenge.points, reason: .suitePenalty, events: &events)
         }
 
         if rules.bevue.isEnabled {
