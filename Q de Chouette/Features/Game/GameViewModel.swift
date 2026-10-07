@@ -28,6 +28,7 @@ final class GameViewModel {
         case sirotageBets
         case manualEntry(RollPurpose)
         case scoreboard
+        case rules
         var id: Self { self }
     }
 
@@ -58,6 +59,24 @@ final class GameViewModel {
     var activeSheet: Sheet?
     var errorMessage: String?
 
+    // MARK: Partie guidée
+
+    /// Explications en direct. Modifiable en cours de partie.
+    var isGuided: Bool {
+        didSet {
+            savedGame.isGuided = isGuided
+            if !isGuided {
+                coachTip = nil
+                reflexBriefed = true
+            }
+            persist()
+        }
+    }
+    /// Explication du dernier événement marquant (partie guidée uniquement).
+    private(set) var coachTip: CoachTip?
+    /// En partie guidée, le mini-jeu ne démarre qu'après lecture de ses consignes.
+    private(set) var reflexBriefed = true
+
     /// Incrémenté à chaque retour haptique ; la vue observe ce compteur.
     private(set) var feedbackTick = 0
     private(set) var feedbackKind = SensoryFeedback.impact
@@ -72,8 +91,19 @@ final class GameViewModel {
         engine = try savedGame.decodeEngine()
         avatars = savedGame.avatars
         mode = savedGame.mode
+        isGuided = savedGame.isGuided   // pas de didSet dans l'initialiseur
         feedTurn = engine.currentTurn.number
         restoreDisplayedDice()
+        if isGuided {
+            reflexBriefed = pendingReflex == nil
+            if engine.history.isEmpty && engine.currentTurn.roll == nil {
+                coachTip = Coach.welcome(rules: engine.rules, firstPlayer: currentPlayer.name)
+            } else if let roll = engine.currentTurn.roll {
+                // Reprise en plein tour : on réexplique le lancer en cours.
+                coachTip = Coach.tip(for: RollAnalyzer.analyze(roll, rules: engine.rules), player: currentPlayer.name,
+                                     rules: engine.rules, grantedGrelottine: false)
+            }
+        }
     }
 
     // MARK: Accès pratiques
@@ -90,6 +120,19 @@ final class GameViewModel {
     var pendingReflex: ReflexChallenge? {
         if case .awaitingReflex(let challenge) = engine.phase { challenge } else { nil }
     }
+
+    /// Le mini-jeu en plein écran est affiché (consignes lues en partie guidée).
+    var isReflexPresented: Bool { pendingReflex != nil && reflexBriefed }
+
+    /// Consignes à lire avant le mini-jeu, en partie guidée.
+    var reflexBriefing: CoachTip? {
+        guard let pendingReflex, !reflexBriefed else { return nil }
+        return Coach.reflexBriefing(pendingReflex)
+    }
+
+    func startBriefedReflex() { reflexBriefed = true }
+
+    func dismissCoachTip() { coachTip = nil }
 
     /// Le lancer attendu dans la phase actuelle, s'il y en a un.
     var expectedRoll: RollPurpose? {
@@ -209,6 +252,8 @@ final class GameViewModel {
         engine = previous
         feed = [FeedLine(text: String(localized: "Coup annulé"))]
         feedTurn = engine.currentTurn.number
+        coachTip = nil
+        reflexBriefed = !isGuided || pendingReflex == nil
         restoreDisplayedDice()
         persist()
     }
@@ -252,6 +297,10 @@ final class GameViewModel {
                 feed.append(FeedLine(text: String(localized: "\(name(of: player)) gagne une grelottine")))
             case .rolled(let player, let analysis):
                 feed.append(FeedLine(text: String(localized: "\(name(of: player)) : \(analysis.name)")))
+                if isGuided {
+                    coachTip = Coach.tip(for: analysis, player: name(of: player), rules: rules,
+                                         grantedGrelottine: events.contains(.grelottineGranted(player)))
+                }
                 if analysis.figures.count == 1 { rollLine = (feed.count - 1, player, analysis.figures[0]) }
             case .scoreChanged(let change, _):
                 if let line = rollLine, change.player == line.player, change.reason == .figure(line.figure) {
@@ -266,11 +315,18 @@ final class GameViewModel {
                 feed.append(FeedLine(text: success
                     ? String(localized: "Le dé tombe sur \(face.value) : sirotage réussi !")
                     : String(localized: "Le dé tombe sur \(face.value) : raté.")))
-            case .reflexResolved(let challenge, let winners, _):
+            case .reflexResolved(let challenge, let winners, let losers):
                 if challenge.kind == .pasMouLeCaillou, winners.isEmpty {
                     feed.append(FeedLine(text: String(localized: "Personne n'a crié à temps.")))
                 }
-            case .sirotageBetsOpened, .reflexStarted, .turnEnded, .turnStarted, .gameOver:
+                if isGuided {
+                    coachTip = Coach.reflexOutcome(challenge, winners: winners, losers: losers) { self.name(of: $0) }
+                }
+            case .reflexStarted:
+                reflexBriefed = !isGuided
+            case .sirotageBetsOpened:
+                if isGuided { coachTip = Coach.sirotageBets(rules: rules) }
+            case .turnEnded, .turnStarted, .gameOver:
                 break
             }
         }

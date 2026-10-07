@@ -24,6 +24,7 @@ final class SetupViewModel {
     var entries: [Entry]
     var mode: GameMode
     var firstPlayer = FirstPlayer.random
+    var isGuided = false
 
     init(mode: GameMode) {
         self.mode = mode
@@ -96,7 +97,7 @@ final class SetupViewModel {
         case .entry(let id): entries.firstIndex { $0.id == id } ?? 0
         }
         let engine = try GameEngine(playerNames: names, rules: rules, firstPlayer: first)
-        let game = try SavedGame(engine: engine, avatars: entries.map(\.avatar), mode: mode)
+        let game = try SavedGame(engine: engine, avatars: entries.map(\.avatar), mode: mode, isGuided: isGuided)
         context.insert(game)
 
         let profiles = (try? context.fetch(FetchDescriptor<PlayerProfile>())) ?? []

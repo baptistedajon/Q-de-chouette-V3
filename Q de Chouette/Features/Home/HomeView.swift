@@ -8,6 +8,10 @@ struct HomeView: View {
     @Environment(Router.self) private var router
     @Query(filter: #Predicate<SavedGame> { !$0.isFinished }, sort: \SavedGame.updatedAt, order: .reverse)
     private var unfinishedGames: [SavedGame]
+    @Query private var allGames: [SavedGame]
+
+    /// Aucune partie jouée : on propose d'office la partie guidée.
+    private var isFirstGame: Bool { allGames.isEmpty }
 
     var body: some View {
         ScrollView {
@@ -23,16 +27,21 @@ struct HomeView: View {
                         .buttonStyle(.primary)
                         .accessibilityHint(Text(current.playerNames.formatted(.list(type: .and))))
 
-                        Button { router.push(.setup) } label: {
+                        Button { router.push(.setup(guided: isFirstGame)) } label: {
                             Label("Nouvelle partie", systemImage: "plus")
                         }
                         .buttonStyle(.secondary)
                     } else {
-                        Button { router.push(.setup) } label: {
+                        Button { router.push(.setup(guided: isFirstGame)) } label: {
                             Label("Nouvelle partie", systemImage: "dice.fill")
                         }
                         .buttonStyle(.primary)
                     }
+
+                    Button { router.push(.rules) } label: {
+                        Label("Règles du jeu", systemImage: "book.closed")
+                    }
+                    .buttonStyle(.secondary)
 
                     Button { router.push(.history) } label: {
                         Label("Parties précédentes", systemImage: "scroll")
@@ -40,7 +49,7 @@ struct HomeView: View {
                     .buttonStyle(.secondary)
 
                     Button { router.push(.settings) } label: {
-                        Label("Réglages et règles", systemImage: "gearshape")
+                        Label("Réglages", systemImage: "gearshape")
                     }
                     .buttonStyle(.secondary)
                 }

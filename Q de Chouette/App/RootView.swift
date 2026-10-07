@@ -6,7 +6,8 @@ import SwiftData
 import Observation
 
 enum Route: Hashable {
-    case setup
+    case setup(guided: Bool)
+    case rules
     /// Identifiant stable : l'objet `SavedGame` change à chaque sauvegarde.
     case game(PersistentIdentifier)
     case history
@@ -37,7 +38,8 @@ struct RootView: View {
             HomeView()
                 .navigationDestination(for: Route.self) { route in
                     switch route {
-                    case .setup: SetupView()
+                    case .setup(let guided): SetupView(guided: guided)
+                    case .rules: RulesView(onStartGuidedGame: { router.push(.setup(guided: true)) })
                     case .game(let id): GameScreen(gameID: id)
                     case .history: HistoryView()
                     case .settings: SettingsView()

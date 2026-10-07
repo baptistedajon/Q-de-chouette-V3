@@ -52,6 +52,14 @@ struct GameView: View {
                 VStack(spacing: 22) {
                     TurnHeader(model: model)
                     DiceTray(model: model, dieSize: sizeClass == .regular ? 110 : 86)
+                    if let tip = model.coachTip {
+                        CoachCard(tip: tip, onDismiss: { model.dismissCoachTip() })
+                            .transition(.opacity)
+                    }
+                    if let briefing = model.reflexBriefing {
+                        CoachCard(tip: briefing)
+                            .transition(.opacity)
+                    }
                     if !model.feed.isEmpty {
                         ResultFeed(lines: model.feed)
                             .transition(.opacity)
@@ -61,6 +69,7 @@ struct GameView: View {
                 .frame(maxWidth: 640)
                 .frame(maxWidth: .infinity)
                 .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.feed)
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.coachTip)
             }
             ActionPanel(model: model)
         }
@@ -80,6 +89,19 @@ struct GameView: View {
                 } label: {
                     Label("Tableau des scores", systemImage: "list.number")
                 }
+
+                Menu {
+                    Toggle(isOn: $model.isGuided) {
+                        Label("Partie guidée", systemImage: "graduationcap")
+                    }
+                    Button {
+                        model.activeSheet = .rules
+                    } label: {
+                        Label("Règles du jeu", systemImage: "book.closed")
+                    }
+                } label: {
+                    Label("Aide", systemImage: "questionmark.circle")
+                }
             }
         }
         .themedBackground()
@@ -87,7 +109,7 @@ struct GameView: View {
             sheetContent(sheet)
                 .themedBackground()
         }
-        .fullScreenCover(isPresented: Binding(get: { model.pendingReflex != nil }, set: { _ in })) {
+        .fullScreenCover(isPresented: Binding(get: { model.isReflexPresented }, set: { _ in })) {
             if let challenge = model.pendingReflex {
                 ReflexView(challenge: challenge, players: model.players, avatars: model.avatars, rules: model.rules) {
                     model.resolveReflex($0)
@@ -99,7 +121,7 @@ struct GameView: View {
                                               set: { if !$0 { victoryDismissed = true } })) {
             VictoryView(model: model,
                         onRematch: { rematch() },
-                        onNewGame: { victoryDismissed = true; router.popToRoot(); router.push(.setup) },
+                        onNewGame: { victoryDismissed = true; router.popToRoot(); router.push(.setup(guided: false)) },
                         onHome: { victoryDismissed = true; router.popToRoot() },
                         onClose: { victoryDismissed = true })
         }
@@ -128,6 +150,15 @@ struct GameView: View {
             }
         case .scoreboard:
             ScoreboardView(engine: model.engine, avatars: model.avatars)
+        case .rules:
+            NavigationStack {
+                RulesView(rules: model.rules)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Fermer") { model.activeSheet = nil }
+                        }
+                    }
+            }
         }
     }
 
@@ -387,7 +418,14 @@ struct ActionPanel: View {
         case .awaitingSirotageRoll:
             rollButton(title: model.mode == .manual ? String(localized: "Saisir le dé relancé") : String(localized: "Relancer le dé"))
         case .awaitingReflex:
-            Text("Mini-jeu en cours…").font(.headline)
+            if model.reflexBriefing != nil {
+                Button { model.startBriefedReflex() } label: {
+                    Label("Prêts ? C'est parti !", systemImage: "hand.tap.fill")
+                }
+                .buttonStyle(.primary)
+            } else {
+                Text("Mini-jeu en cours…").font(.headline)
+            }
         case .gameOver:
             EmptyView()
         }
@@ -401,5 +439,43 @@ struct ActionPanel: View {
         }
         .buttonStyle(.primary)
         .keyboardShortcut(.defaultAction)
+    }
+}
+
+// MARK: - Conseil de la partie guidée
+
+struct CoachCard: View {
+    let tip: CoachTip
+    /// `nil` : pas de bouton de fermeture (consignes à suivre avant de continuer).
+    var onDismiss: (() -> Void)?
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Text("🦉")
+                .font(.system(size: 34))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(tip.title)
+                    .font(Theme.heading(.headline))
+                Text(tip.body)
+                    .font(.callout)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 0)
+            if let onDismiss {
+                Button(action: onDismiss) {
+                    Image(systemName: "xmark")
+                        .font(.footnote.weight(.bold))
+                        .foregroundStyle(Theme.inkSecondary)
+                        .padding(6)
+                }
+                .accessibilityLabel(Text("Masquer le conseil"))
+            }
+        }
+        .padding()
+        .background(Theme.gold.opacity(0.14), in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+        .overlay(RoundedRectangle(cornerRadius: Theme.cornerRadius).strokeBorder(Theme.gold.opacity(0.6), lineWidth: 1.5))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("Conseil : \(tip.title). \(tip.body)"))
     }
 }

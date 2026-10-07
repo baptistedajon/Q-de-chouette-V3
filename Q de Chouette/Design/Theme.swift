@@ -70,6 +70,8 @@ struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(Theme.heading(.title3))
+            .multilineTextAlignment(.center)
+            .padding(.vertical, 10)
             .frame(maxWidth: .infinity, minHeight: 52)
             .padding(.horizontal)
             .foregroundStyle(Color.white)
@@ -85,6 +87,8 @@ struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.headline)
+            .multilineTextAlignment(.center)
+            .padding(.vertical, 8)
             .frame(maxWidth: .infinity, minHeight: 46)
             .padding(.horizontal)
             .foregroundStyle(Theme.ink)

@@ -52,8 +52,10 @@ final class SavedGame {
     var turnCount: Int
     /// Scores dans l'ordre de jeu, pour l'historique.
     var scores: [Int]
+    /// Partie guidée : chaque lancer est expliqué.
+    var isGuided: Bool = false
 
-    init(engine: GameEngine, avatars: [Avatar], mode: GameMode) throws {
+    init(engine: GameEngine, avatars: [Avatar], mode: GameMode, isGuided: Bool = false) throws {
         createdAt = .now
         updatedAt = .now
         modeRaw = mode.rawValue
@@ -63,6 +65,7 @@ final class SavedGame {
         isFinished = false
         turnCount = 0
         scores = engine.players.map(\.score)
+        self.isGuided = isGuided
     }
 
     var mode: GameMode { GameMode(rawValue: modeRaw) ?? .simple }

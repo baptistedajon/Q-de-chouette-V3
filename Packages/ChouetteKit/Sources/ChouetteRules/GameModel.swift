@@ -24,6 +24,10 @@ public enum ReflexKind: String, Hashable, Sendable, Codable {
     case grelotteCaPicote
 }
 
+extension ReflexKind: Identifiable {
+    public var id: String { rawValue }
+}
+
 /// Un mini-jeu de réflexe en attente de résultat.
 public struct ReflexChallenge: Hashable, Sendable, Codable {
     public let kind: ReflexKind

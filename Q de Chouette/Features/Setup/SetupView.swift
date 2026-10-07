@@ -6,6 +6,8 @@ import SwiftData
 import ChouetteRules
 
 struct SetupView: View {
+    /// Partie guidée cochée par défaut (première partie, ou depuis les règles).
+    var guided = false
     @Environment(AppSettings.self) private var settings
     @Environment(Router.self) private var router
     @Environment(\.modelContext) private var context
@@ -26,6 +28,7 @@ struct SetupView: View {
             // Reprend le dernier mode choisi, une seule fois (pas à chaque retour des réglages).
             if !didLoadPreferences {
                 model.mode = settings.lastMode
+                model.isGuided = guided
                 didLoadPreferences = true
             }
         }
@@ -138,6 +141,18 @@ struct SetupView: View {
                     .accessibilityAddTraits(model.mode == mode ? .isSelected : [])
                     .listRowBackground(Theme.surface)
                 }
+            }
+
+            Section {
+                Toggle(isOn: $model.isGuided) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Partie guidée").font(.headline)
+                        Text("Chaque lancer est expliqué en direct. Idéal pour une première partie.")
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.inkSecondary)
+                    }
+                }
+                .listRowBackground(Theme.surface)
             }
 
             Section("Qui commence ?") {
