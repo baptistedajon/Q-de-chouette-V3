@@ -39,6 +39,16 @@ public enum DieOrientation {
         alignment < cos(toleranceDegrees * .pi / 180)
     }
 
+    /// Plus petite rotation qui pose le dé parfaitement à plat sur sa face du dessus actuelle,
+    /// en conservant son orientation autour de la verticale. Sert à corriger une légère
+    /// inclinaison résiduelle : la face lue ne change pas.
+    public static func flattened(rotation: simd_quatf, up: SIMD3<Float> = [0, 1, 0]) -> simd_quatf {
+        let (face, _) = topFace(rotation: rotation, up: up)
+        let worldNormal = rotation.act(normal(of: face))
+        let correction = simd_quatf(from: simd_normalize(worldNormal), to: up)
+        return (correction * rotation).normalized
+    }
+
     /// Orientation qui présente `face` vers le haut, tournée de `yaw` radians autour de la verticale.
     public static func rotation(showing face: DieFace, yaw: Float = 0) -> simd_quatf {
         let up = SIMD3<Float>(0, 1, 0)

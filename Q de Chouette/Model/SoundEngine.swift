@@ -8,88 +8,124 @@ import AVFoundation
 import Foundation
 import ChouetteRules
 
+/// Bruitages disponibles.
+nonisolated enum SoundEffect: CaseIterable, Hashable, Sendable { case clack, rattle, signal, fanfare }
+
+/// Interface des sons, appelée depuis l'interface (fil principal). Ne fait jamais d'appel
+/// bloquant : tout le travail audio est délégué à `AudioGraph`, sur sa propre file.
+/// Un service audio lent ou indisponible ne peut donc pas figer le jeu.
 @MainActor
 final class SoundEngine {
     static let shared = SoundEngine()
 
-    enum Effect: CaseIterable { case clack, rattle, signal, fanfare }
+    typealias Effect = SoundEffect
 
     var effectsEnabled = true
     var musicEnabled = false {
-        didSet { updateMusic() }
+        didSet { if isPrepared { graph.setMusic(musicEnabled) } }
     }
 
     nonisolated static let sampleRate = 44_100.0
+    private let graph = AudioGraph()
+    private var isPrepared = false
+
+    private init() {}
+
+    /// Génère les sons en arrière-plan. Idempotent. Le graphe audio n'est monté
+    /// qu'au premier son réellement joué.
+    func prepare() async {
+        guard !isPrepared else { return }
+        isPrepared = true
+        let samples = await Task.detached(priority: .utility) { Synth.all() }.value
+        graph.load(samples)
+        if musicEnabled { graph.setMusic(true) }
+    }
+
+    func play(_ effect: Effect, volume: Float = 1) {
+        guard effectsEnabled, isPrepared else { return }
+        graph.play(effect, volume: volume)
+    }
+}
+
+/// Graphe AVAudioEngine, manipulé exclusivement sur une file série dédiée.
+nonisolated final class AudioGraph: @unchecked Sendable {
+    private let queue = DispatchQueue(label: "chouette.audio", qos: .userInitiated)
     private let engine = AVAudioEngine()
     private let format = AVAudioFormat(standardFormatWithSampleRate: SoundEngine.sampleRate, channels: 1)!
     private var effectPlayers: [AVAudioPlayerNode] = []
     private var nextPlayer = 0
     private let musicPlayer = AVAudioPlayerNode()
     private let ambiencePlayer = AVAudioPlayerNode()
-    private var buffers: [Effect: [AVAudioPCMBuffer]] = [:]
+    private var buffers: [SoundEffect: [AVAudioPCMBuffer]] = [:]
     private var musicBuffer: AVAudioPCMBuffer?
     private var ambienceBuffer: AVAudioPCMBuffer?
-    private var isPrepared = false
+    private var samples: Synth.Samples?
+    private var isSetUp = false
     private var isMusicPlaying = false
 
-    private init() {}
+    func load(_ samples: Synth.Samples) {
+        queue.async { self.samples = samples }
+    }
 
-    /// Génère les sons (en arrière-plan) et prépare le moteur audio. Idempotent.
-    func prepare() async {
-        guard !isPrepared else { return }
-        isPrepared = true
-        let samples = await Task.detached(priority: .utility) { Synth.all() }.value
+    func play(_ effect: SoundEffect, volume: Float) {
+        queue.async {
+            guard self.setUpIfNeeded(), let buffer = self.buffers[effect]?.randomElement(), self.start() else { return }
+            let player = self.effectPlayers[self.nextPlayer]
+            self.nextPlayer = (self.nextPlayer + 1) % self.effectPlayers.count
+            player.stop()
+            player.volume = max(0.05, min(volume, 1))
+            player.scheduleBuffer(buffer, at: nil)
+            player.play()
+        }
+    }
 
+    func setMusic(_ enabled: Bool) {
+        queue.async {
+            if enabled, !self.isMusicPlaying, self.setUpIfNeeded(), self.start(),
+               let music = self.musicBuffer, let ambience = self.ambienceBuffer {
+                self.musicPlayer.scheduleBuffer(music, at: nil, options: .loops)
+                self.ambiencePlayer.scheduleBuffer(ambience, at: nil, options: .loops)
+                self.musicPlayer.play()
+                self.ambiencePlayer.play()
+                self.isMusicPlaying = true
+            } else if !enabled, self.isMusicPlaying {
+                self.musicPlayer.stop()
+                self.ambiencePlayer.stop()
+                self.isMusicPlaying = false
+            }
+        }
+    }
+
+    /// Monte le graphe au premier besoin (sur la file audio). `false` si les sons ne sont pas prêts.
+    private func setUpIfNeeded() -> Bool {
+        if isSetUp { return true }
+        guard let samples else { return false }
+        isSetUp = true
         try? AVAudioSession.sharedInstance().setCategory(.ambient, options: [.mixWithOthers])
+        let mixer = engine.mainMixerNode
         for _ in 0..<8 {
             let player = AVAudioPlayerNode()
             engine.attach(player)
-            engine.connect(player, to: engine.mainMixerNode, format: format)
+            engine.connect(player, to: mixer, format: format)
             effectPlayers.append(player)
         }
         for player in [musicPlayer, ambiencePlayer] {
             engine.attach(player)
-            engine.connect(player, to: engine.mainMixerNode, format: format)
+            engine.connect(player, to: mixer, format: format)
         }
         musicPlayer.volume = 0.35
         ambiencePlayer.volume = 0.5
-
         buffers[.clack] = samples.clacks.map(makeBuffer)
         buffers[.rattle] = [makeBuffer(samples.rattle)]
         buffers[.signal] = [makeBuffer(samples.signal)]
         buffers[.fanfare] = [makeBuffer(samples.fanfare)]
         musicBuffer = makeBuffer(samples.music)
         ambienceBuffer = makeBuffer(samples.ambience)
-        updateMusic()
+        self.samples = nil
+        return true
     }
 
-    func play(_ effect: Effect, volume: Float = 1) {
-        guard effectsEnabled, let variants = buffers[effect], let buffer = variants.randomElement(),
-              startEngine() else { return }
-        let player = effectPlayers[nextPlayer]
-        nextPlayer = (nextPlayer + 1) % effectPlayers.count
-        player.stop()
-        player.volume = max(0.05, min(volume, 1))
-        player.scheduleBuffer(buffer, at: nil)
-        player.play()
-    }
-
-    private func updateMusic() {
-        guard isPrepared, let musicBuffer, let ambienceBuffer else { return }
-        if musicEnabled, !isMusicPlaying, startEngine() {
-            musicPlayer.scheduleBuffer(musicBuffer, at: nil, options: .loops)
-            ambiencePlayer.scheduleBuffer(ambienceBuffer, at: nil, options: .loops)
-            musicPlayer.play()
-            ambiencePlayer.play()
-            isMusicPlaying = true
-        } else if !musicEnabled, isMusicPlaying {
-            musicPlayer.stop()
-            ambiencePlayer.stop()
-            isMusicPlaying = false
-        }
-    }
-
-    private func startEngine() -> Bool {
+    private func start() -> Bool {
         if engine.isRunning { return true }
         do {
             try AVAudioSession.sharedInstance().setActive(true)

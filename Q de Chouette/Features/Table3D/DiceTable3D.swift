@@ -177,6 +177,18 @@ final class DiceTable3D {
         }
         state = .settled
         for die in dice { setDynamic(die, false) }
+        // Inclinaison résiduelle (dé calé contre un autre, délai maximal atteint…) : on le pose
+        // à plat en douceur sur la face déjà lue, pour que l'affichage corresponde au résultat.
+        for index in thrownIndices {
+            let die = dice[index]
+            let current = die.orientation(relativeTo: nil)
+            guard DieOrientation.topFace(rotation: current).alignment < 0.9995 else { continue }
+            var target = die.transform
+            target.rotation = DieOrientation.flattened(rotation: current)
+            // Posé sur la table (et non appuyé sur un autre dé) : on le redescend au contact.
+            if target.translation.y < Self.dieSize * 1.2 { target.translation.y = Self.dieSize / 2 }
+            die.move(to: target, relativeTo: die.parent, duration: reduceMotion ? 0 : 0.25, timingFunction: .easeOut)
+        }
         let done = completion
         completion = nil
         done?(faces)
@@ -268,7 +280,10 @@ final class DiceTable3D {
             }
         }
         body.components.set(CollisionComponent(shapes: [.generateBox(size: [s, s, s])]))
-        var physics = PhysicsBodyComponent(massProperties: .init(mass: 0.02),
+        // Masse ET inertie calculées depuis la forme du dé. `init(mass:)` seul laisse une inertie
+        // par défaut d'environ 1 kg·m², énorme pour un cube de 4,5 cm : le dé ne pivotait plus
+        // sous son propre poids et restait en équilibre sur une arête.
+        var physics = PhysicsBodyComponent(massProperties: PhysicsMassProperties(shape: .generateBox(size: [s, s, s]), mass: 0.02),
                                            material: .generate(staticFriction: 0.8, dynamicFriction: 0.6, restitution: 0.3),
                                            mode: .kinematic)
         // Amortissement : les dés roulent franchement puis s'immobilisent en 2 à 3 secondes.

@@ -35,6 +35,27 @@ struct DieOrientationTests {
         #expect(DieOrientation.isCocked(alignment: DieOrientation.topFace(rotation: onEdge).alignment))
     }
 
+    @Test("Mise à plat : même face, parfaitement horizontale, rotation minimale")
+    func flatten() {
+        var rng = SeededGenerator(seed: 11)
+        for _ in 0..<300 {
+            let face = DieFace.random(using: &rng)
+            let yaw = Float.random(in: 0...(2 * .pi), using: &rng)
+            let tiltAxis = simd_normalize(SIMD3<Float>(Float.random(in: -1...1, using: &rng), 0,
+                                                       Float.random(in: -1...1, using: &rng)) + [0.001, 0, 0])
+            let tilt = Float.random(in: 0...(30 * .pi / 180), using: &rng)
+            let tilted = simd_quatf(angle: tilt, axis: tiltAxis) * DieOrientation.rotation(showing: face, yaw: yaw)
+
+            let flat = DieOrientation.flattened(rotation: tilted)
+            let (after, alignment) = DieOrientation.topFace(rotation: flat)
+            #expect(after == face)
+            #expect(alignment > 0.9999)
+            // La correction ne tourne pas plus que l'inclinaison d'origine.
+            let correction = flat * tilted.inverse
+            #expect(abs(correction.angle) <= tilt + 1e-3 || abs(correction.angle - 2 * .pi) <= tilt + 1e-3)
+        }
+    }
+
     @Test("Orientations aléatoires : la face lue est celle qui pointe le plus vers le haut")
     func randomOrientations() {
         var rng = SeededGenerator(seed: 7)
