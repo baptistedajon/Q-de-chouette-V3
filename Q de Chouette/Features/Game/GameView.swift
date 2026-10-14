@@ -42,49 +42,63 @@ struct GameView: View {
     @Environment(Router.self) private var router
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var victoryDismissed = false
 
     var body: some View {
-        VStack(spacing: 0) {
-            // Barres fixes : agrandissement plafonné pour laisser la place au jeu
-            // (le tableau des scores, lui, suit toutes les tailles de texte).
-            ScoreStrip(model: model)
-                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-            Divider().overlay(Theme.wood.opacity(0.4))
-            ScrollView {
-                VStack(spacing: 22) {
-                    TurnHeader(model: model)
-                    if model.mode == .table3D {
-                        VStack(spacing: 10) {
-                            Table3DView(model: model)
-                                .frame(height: sizeClass == .regular ? 460 : 330)
-                            // Rappel 2D des valeurs, plus lisible et accessible.
-                            DiceTray(model: model, dieSize: 34, compact: true)
+        GeometryReader { geometry in
+            // Minimum usable widths for the table and controls, rather than a device check.
+            let expanded = sizeClass == .regular && !dynamicTypeSize.isAccessibilitySize
+                && geometry.size.width >= 320 + 280 + 24 + 32
+            let scrollActions = dynamicTypeSize.isAccessibilitySize || geometry.size.height < 420
+            let layout = expanded
+                ? AnyLayout(HStackLayout(alignment: .top, spacing: 24))
+                : AnyLayout(VStackLayout(spacing: 0))
+            VStack(spacing: 0) {
+                if !expanded {
+                    ScoreStrip(model: model)
+                    Divider().overlay(Theme.wood.opacity(0.4))
+                }
+                layout {
+                    ScrollView {
+                        VStack(spacing: 22) {
+                            TurnHeader(model: model)
+                            if model.mode == .table3D {
+                                VStack(spacing: 10) {
+                                    Table3DView(model: model)
+                                        .aspectRatio(1.15, contentMode: .fit)
+                                    DiceTray(model: model, dieSize: 34, compact: true)
+                                }
+                            } else {
+                                DiceTray(model: model, dieSize: 86)
+                            }
+                            if !expanded {
+                                commentary
+                                if scrollActions { ActionPanel(model: model) }
+                            }
                         }
-                    } else {
-                        DiceTray(model: model, dieSize: sizeClass == .regular ? 110 : 86)
+                        .padding()
+                        .frame(maxWidth: 680)
+                        .frame(maxWidth: .infinity)
                     }
-                    if let tip = model.coachTip {
-                        CoachCard(tip: tip, onDismiss: { model.dismissCoachTip() })
-                            .transition(.opacity)
-                    }
-                    if let briefing = model.reflexBriefing {
-                        CoachCard(tip: briefing)
-                            .transition(.opacity)
-                    }
-                    if !model.feed.isEmpty {
-                        ResultFeed(lines: model.feed)
-                            .transition(.opacity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    if expanded {
+                        ScrollView {
+                            VStack(spacing: 18) {
+                                GameStandings(model: model)
+                                ActionPanel(model: model, showsBar: false)
+                                commentary
+                            }
+                            .padding(.vertical)
+                        }
+                        .frame(width: min(340, geometry.size.width * 0.42))
                     }
                 }
-                .padding()
-                .frame(maxWidth: 640)
-                .frame(maxWidth: .infinity)
-                .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.feed)
-                .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.coachTip)
+                .padding(.horizontal, expanded ? 16 : 0)
             }
-            ActionPanel(model: model)
-                .dynamicTypeSize(...DynamicTypeSize.accessibility2)
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if !expanded && !scrollActions { ActionPanel(model: model) }
+            }
         }
         .navigationTitle(Text("Tour \(model.engine.currentTurn.number)"))
         .navigationBarTitleDisplayMode(.inline)
@@ -148,6 +162,22 @@ struct GameView: View {
         }
     }
 
+    private var commentary: some View {
+        VStack(spacing: 18) {
+            if let tip = model.coachTip {
+                CoachCard(tip: tip, onDismiss: { model.dismissCoachTip() })
+            }
+            if let briefing = model.reflexBriefing {
+                CoachCard(tip: briefing)
+            }
+            if !model.feed.isEmpty {
+                ResultFeed(lines: model.feed)
+            }
+        }
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.feed)
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.coachTip)
+    }
+
     @ViewBuilder
     private func sheetContent(_ sheet: GameViewModel.Sheet) -> some View {
         switch sheet {
@@ -195,6 +225,36 @@ struct GameView: View {
         } catch {
             model.errorMessage = String(localized: "Impossible de lancer la revanche.")
         }
+    }
+}
+
+/// Persistent scores alongside the table when both regions have enough space.
+private struct GameStandings: View {
+    let model: GameViewModel
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label("Scores", systemImage: "list.number")
+                .font(Theme.heading())
+                .accessibilityAddTraits(.isHeader)
+            ForEach(model.players) { player in
+                HStack(spacing: 10) {
+                    AvatarView(avatar: model.avatar(of: player.id), size: 30)
+                    Text(player.name).font(.headline)
+                    Spacer(minLength: 8)
+                    Text("\(player.score)").font(.headline.monospacedDigit())
+                }
+                .padding(8)
+                .background(player.id == model.engine.currentPlayer ? Theme.gold.opacity(0.2) : .clear,
+                            in: RoundedRectangle(cornerRadius: 10))
+                .accessibilityElement(children: .combine)
+                .accessibilityValue(player.id == model.engine.currentPlayer ? Text("à son tour") : Text(""))
+            }
+            Text("Objectif : \(model.rules.targetScore) points")
+                .font(.footnote)
+                .foregroundStyle(Theme.inkSecondary)
+        }
+        .parchmentCard()
     }
 }
 
@@ -325,17 +385,21 @@ struct DiceTray: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        HStack(spacing: dieSize * 0.25) {
-            ForEach(0..<3, id: \.self) { index in
-                let rolling = model.rollingDice.contains(index)
-                DieView(value: model.diceFaces[index], size: dieSize,
-                        isHighlighted: model.highlightedDie == index)
-                    .rotationEffect(.degrees(rolling && !reduceMotion ? Double(model.diceFaces[index] ?? 1) * 47 : 0))
-                    .offset(y: rolling && !reduceMotion ? -dieSize * 0.12 : 0)
-                    .animation(reduceMotion ? nil : .spring(duration: 0.18), value: model.diceFaces[index])
+        GeometryReader { geometry in
+            let fittedSize = min(dieSize, max(1, (geometry.size.width - 32) / 3.5))
+            HStack(spacing: fittedSize * 0.25) {
+                ForEach(0..<3, id: \.self) { index in
+                    let rolling = model.rollingDice.contains(index)
+                    DieView(value: model.diceFaces[index], size: fittedSize,
+                            isHighlighted: model.highlightedDie == index)
+                        .rotationEffect(.degrees(rolling && !reduceMotion ? Double(model.diceFaces[index] ?? 1) * 47 : 0))
+                        .offset(y: rolling && !reduceMotion ? -fittedSize * 0.12 : 0)
+                        .animation(reduceMotion ? nil : .spring(duration: 0.18), value: model.diceFaces[index])
+                }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding(.vertical, compact ? 4 : 24)
+        .frame(height: dieSize + (compact ? 8 : 48))
         .frame(maxWidth: .infinity)
         .background {
             if !compact {
@@ -389,6 +453,7 @@ struct ResultFeed: View {
 
 struct ActionPanel: View {
     let model: GameViewModel
+    var showsBar = true
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -398,7 +463,13 @@ struct ActionPanel: View {
         .padding()
         .frame(maxWidth: 640)
         .frame(maxWidth: .infinity)
-        .background(.bar)
+        .background {
+            if showsBar {
+                Rectangle().fill(.bar)
+            } else {
+                RoundedRectangle(cornerRadius: Theme.cornerRadius).fill(Theme.surface)
+            }
+        }
         .disabled(model.isRolling)
     }
 

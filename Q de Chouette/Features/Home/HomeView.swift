@@ -10,13 +10,19 @@ struct HomeView: View {
     private var unfinishedGames: [SavedGame]
     @Query private var allGames: [SavedGame]
 
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    @State private var hasRoomForColumns = false
+
     /// Aucune partie jouée : on propose d'office la partie guidée.
     private var isFirstGame: Bool { allGames.isEmpty }
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 28) {
+            adaptiveLayout {
                 header
+                    .frame(maxWidth: .infinity)
                 VStack(spacing: 14) {
                     if let current = unfinishedGames.first {
                         Button {
@@ -57,10 +63,20 @@ struct HomeView: View {
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 32)
+            .frame(maxWidth: 1060)
             .frame(maxWidth: .infinity)
         }
+        .onGeometryChange(for: Bool.self) { geometry in
+            geometry.size.width >= 300 + 300 + 40 + 48
+        } action: { hasRoomForColumns = $0 }
         .themedBackground()
-        .toolbar(.hidden, for: .navigationBar)
+        .toolbar(sizeClass == .compact ? .hidden : .visible, for: .navigationBar)
+    }
+
+    private var adaptiveLayout: AnyLayout {
+        sizeClass == .regular && hasRoomForColumns && !dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(HStackLayout(alignment: .center, spacing: 40))
+            : AnyLayout(VStackLayout(spacing: 28))
     }
 
     private var header: some View {

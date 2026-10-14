@@ -12,6 +12,9 @@ struct RulesView: View {
     var onStartGuidedGame: (() -> Void)?
 
     @Environment(AppSettings.self) private var settings
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @State private var hasRoomForColumns = false
     @State private var practice: ReflexKind?
 
     private var currentRules: RuleSet { rules ?? settings.rules }
@@ -28,8 +31,10 @@ struct RulesView: View {
                 }
 
                 sectionTitle("Les combinaisons")
-                ForEach(FigureKind.teachingOrder, id: \.self) { kind in
-                    FigureCard(kind: kind, rules: currentRules)
+                LazyVGrid(columns: figureColumns, alignment: .leading, spacing: 16) {
+                    ForEach(FigureKind.teachingOrder, id: \.self) { kind in
+                        FigureCard(kind: kind, rules: currentRules)
+                    }
                 }
 
                 sectionTitle("Les cris")
@@ -43,13 +48,24 @@ struct RulesView: View {
                 advancedRules
             }
             .padding()
-            .frame(maxWidth: 680)
+            .frame(maxWidth: sizeClass == .regular && !dynamicTypeSize.isAccessibilitySize ? 1000 : 680)
             .frame(maxWidth: .infinity)
         }
+        .onGeometryChange(for: Bool.self) { geometry in
+            geometry.size.width >= 280 + 280 + 16 + 32
+        } action: { hasRoomForColumns = $0 }
         .themedBackground()
         .navigationTitle("Règles du jeu")
         .fullScreenCover(item: $practice) { kind in
             ReflexPracticeView(kind: kind)
+        }
+    }
+
+    private var figureColumns: [GridItem] {
+        if sizeClass == .regular && hasRoomForColumns && !dynamicTypeSize.isAccessibilitySize {
+            [GridItem(.flexible(), alignment: .top), GridItem(.flexible(), alignment: .top)]
+        } else {
+            [GridItem(.flexible(), alignment: .top)]
         }
     }
 

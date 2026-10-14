@@ -29,6 +29,8 @@ struct ScoreboardView: View {
                 case .stats: StatisticsList(engine: engine, avatars: avatars)
                 }
             }
+            .frame(maxWidth: 760)
+            .frame(maxWidth: .infinity)
             .themedBackground()
             .navigationTitle("Scores")
             .navigationBarTitleDisplayMode(.inline)

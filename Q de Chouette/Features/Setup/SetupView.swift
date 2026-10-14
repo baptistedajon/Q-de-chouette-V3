@@ -181,6 +181,8 @@ struct SetupView: View {
                 .listRowBackground(Theme.surface)
             }
         }
+        .frame(maxWidth: 720)
+        .frame(maxWidth: .infinity)
         .toolbar { EditButton() }
         .safeAreaInset(edge: .bottom) {
             Button {
@@ -191,6 +193,8 @@ struct SetupView: View {
             .buttonStyle(.primary)
             .disabled(!model.canStart)
             .padding()
+            .frame(maxWidth: 720)
+            .frame(maxWidth: .infinity)
             .background(.bar)
         }
         .sheet(isPresented: Binding(get: { avatarPickerEntry != nil }, set: { if !$0 { avatarPickerEntry = nil } })) {

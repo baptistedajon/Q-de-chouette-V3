@@ -34,6 +34,8 @@ struct HistoryView: View {
                 }
             }
         }
+        .frame(maxWidth: 760)
+        .frame(maxWidth: .infinity)
         .themedBackground()
         .navigationTitle("Parties précédentes")
         .toolbar { if !games.isEmpty { EditButton() } }

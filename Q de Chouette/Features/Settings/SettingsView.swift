@@ -124,6 +124,8 @@ struct SettingsView: View {
             }
             .listRowBackground(Theme.surface)
         }
+        .frame(maxWidth: 760)
+        .frame(maxWidth: .infinity)
         .themedBackground()
         .navigationTitle("Réglages")
         .confirmationDialog("Rétablir toutes les règles par défaut ?", isPresented: $confirmReset, titleVisibility: .visible) {
